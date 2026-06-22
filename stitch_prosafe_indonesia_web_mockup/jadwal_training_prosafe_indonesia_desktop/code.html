@@ -1,0 +1,364 @@
+<!DOCTYPE html><html lang="id"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Jadwal Pelatihan K3 - ProSafe Indonesia</title>
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&amp;family=Montserrat:wght@600;700&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Configuration -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-tertiary-fixed": "#311300",
+                    "on-secondary-fixed": "#191c1d",
+                    "on-secondary": "#ffffff",
+                    "surface-variant": "#e4e2e1",
+                    "safety-orange": "#FF851B",
+                    "surface": "#fcf9f8",
+                    "ink-black": "#0A0A0A",
+                    "surface-dim": "#dcd9d9",
+                    "secondary-fixed": "#e1e3e4",
+                    "on-surface-variant": "#43474e",
+                    "tertiary": "#0e0300",
+                    "error-container": "#ffdad6",
+                    "on-tertiary-container": "#d36900",
+                    "surface-tint": "#476083",
+                    "tertiary-container": "#351600",
+                    "background": "#fcf9f8",
+                    "on-error-container": "#93000a",
+                    "on-background": "#1b1c1c",
+                    "on-tertiary-fixed-variant": "#723600",
+                    "on-secondary-fixed-variant": "#454748",
+                    "on-error": "#ffffff",
+                    "surface-container-low": "#f6f3f2",
+                    "surface-container": "#f0eded",
+                    "surface-gray": "#F8F9FA",
+                    "on-surface": "#1b1c1c",
+                    "tertiary-fixed": "#ffdcc7",
+                    "surface-container-lowest": "#ffffff",
+                    "on-primary-fixed-variant": "#2f486a",
+                    "inverse-primary": "#afc8f0",
+                    "outline-variant": "#c4c6cf",
+                    "inverse-surface": "#303030",
+                    "secondary": "#5c5f60",
+                    "primary-fixed-dim": "#afc8f0",
+                    "tertiary-fixed-dim": "#ffb787",
+                    "secondary-container": "#e1e3e4",
+                    "surface-bright": "#fcf9f8",
+                    "primary-fixed": "#d4e3ff",
+                    "deep-navy": "#001F3F",
+                    "alert-red": "#FF4136",
+                    "secondary-fixed-dim": "#c5c7c8",
+                    "on-primary-container": "#6f88ad",
+                    "on-tertiary": "#ffffff",
+                    "primary": "#000613",
+                    "surface-container-highest": "#e4e2e1",
+                    "on-secondary-container": "#626566",
+                    "error": "#ba1a1a",
+                    "on-primary-fixed": "#001c3a",
+                    "surface-container-high": "#eae7e7",
+                    "primary-container": "#001f3f",
+                    "outline": "#74777f",
+                    "inverse-on-surface": "#f3f0ef",
+                    "on-primary": "#ffffff"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "stack-sm": "8px",
+                    "margin-mobile": "16px",
+                    "container-max": "1280px",
+                    "stack-md": "16px",
+                    "gutter": "24px",
+                    "stack-lg": "32px",
+                    "section-padding": "80px"
+            },
+            "fontFamily": {
+                    "headline-sm": ["Montserrat"],
+                    "headline-xl": ["Montserrat"],
+                    "headline-md": ["Montserrat"],
+                    "headline-lg": ["Montserrat"],
+                    "label-bold": ["Inter"],
+                    "headline-lg-mobile": ["Montserrat"],
+                    "body-lg": ["Inter"],
+                    "body-md": ["Inter"],
+                    "body-sm": ["Inter"],
+                    "headline-xl-mobile": ["Montserrat"]
+            },
+            "fontSize": {
+                    "headline-sm": ["20px", {"lineHeight": "28px", "fontWeight": "600"}],
+                    "headline-xl": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                    "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                    "headline-lg": ["32px", {"lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "700"}],
+                    "label-bold": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "700"}],
+                    "headline-lg-mobile": ["28px", {"lineHeight": "36px", "fontWeight": "700"}],
+                    "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                    "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                    "body-sm": ["14px", {"lineHeight": "20px", "fontWeight": "400"}],
+                    "headline-xl-mobile": ["32px", {"lineHeight": "40px", "fontWeight": "700"}]
+            }
+          }
+        }
+      }
+    </script>
+</head>
+<body class="bg-background text-on-background font-body-md antialiased pt-24 min-h-screen flex flex-col">
+<!-- TopNavBar JSON Mapping -->
+<nav class="fixed top-0 w-full z-50 flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto bg-surface dark:bg-ink-black border-b border-outline-variant dark:border-outline shadow-sm">
+<div class="font-headline-md text-headline-md font-bold text-deep-navy dark:text-primary-fixed">
+            ProSafe Indonesia
+        </div>
+<div class="hidden md:flex items-center gap-stack-lg">
+<ul class="flex gap-stack-lg font-headline-sm text-headline-sm">
+<!-- Inactive Tab -->
+<li class=""><a class="text-secondary dark:text-secondary-fixed hover:text-deep-navy hover:bg-surface-container-low transition-colors duration-200" href="#">Pelatihan K3</a></li>
+<!-- Active Tab -->
+<li class=""><a class="text-safety-orange font-bold border-b-2 border-safety-orange pb-1 hover:bg-surface-container-low transition-colors duration-200" href="#">Jadwal</a></li>
+<!-- Inactive Tabs -->
+<li class=""><a class="text-secondary dark:text-secondary-fixed hover:text-deep-navy hover:bg-surface-container-low transition-colors duration-200" href="#">Corporate</a></li>
+<li class=""><a class="text-secondary dark:text-secondary-fixed hover:text-deep-navy hover:bg-surface-container-low transition-colors duration-200" href="#">Tentang Kami</a></li>
+</ul>
+</div>
+<div class="flex items-center gap-stack-md">
+<button class="bg-safety-orange text-on-primary font-label-bold text-label-bold px-6 py-2 rounded shadow-[0px_10px_15px_-3px_rgba(0,31,63,0.1)] hover:opacity-90 transition-opacity Active:opacity-80 Active:scale-95">
+                Konsultasi Gratis
+            </button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow w-full max-w-container-max mx-auto px-margin-mobile md:px-gutter pb-section-padding">
+<!-- Hero Section -->
+<section class="mt-stack-lg mb-stack-lg bg-deep-navy rounded-xl p-8 md:p-12 text-on-primary relative overflow-hidden shadow-[0px_10px_15px_-3px_rgba(0,31,63,0.1)] flex flex-col md:flex-row justify-between items-center gap-stack-lg">
+<!-- Decorative background element -->
+<div class="absolute inset-0 opacity-10 pointer-events-none" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, #ffffff 10px, #ffffff 11px);"></div>
+<div class="relative z-10 max-w-2xl">
+<h1 class="font-headline-xl-mobile text-headline-xl-mobile md:font-headline-xl md:text-headline-xl mb-4">Jadwal Pelatihan &amp; Sertifikasi K3 2026</h1>
+<p class="font-body-lg text-body-lg text-inverse-primary opacity-90">
+                    Pilih jadwal yang sesuai untuk kebutuhan kompetensi tim Anda. Semua pelatihan terakreditasi resmi KEMNAKER dan BNSP dengan instruktur bersertifikat industri.
+                </p>
+</div>
+<!-- Prominent PDF Download inside Hero for high visibility -->
+<div class="relative z-10 shrink-0">
+<a class="group flex items-center gap-3 bg-surface text-deep-navy font-headline-sm text-headline-sm px-6 py-4 rounded-lg border border-outline-variant hover:border-deep-navy transition-all duration-300 shadow-sm" href="#">
+<span class="material-symbols-outlined text-safety-orange" style="font-variation-settings: 'FILL' 1;">picture_as_pdf</span>
+<span class="">Download Jadwal PDF<br><span class="font-body-sm text-body-sm text-secondary font-normal group-hover:text-deep-navy">Bulan Juni 2026 (2.4MB)</span></span>
+<span class="material-symbols-outlined ml-2 text-secondary group-hover:text-safety-orange transition-colors">download</span>
+</a>
+</div>
+</section>
+<!-- Interactive Filter Section -->
+<section class="bg-surface-gray rounded-xl border border-outline-variant p-6 mb-stack-lg flex flex-col lg:flex-row gap-stack-md items-end">
+<div class="w-full lg:w-1/4 flex flex-col gap-2">
+<label class="font-label-bold text-label-bold text-on-surface-variant" for="search">CARI PROGRAM</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full pl-10 pr-4 py-2 bg-surface border border-outline-variant rounded font-body-md text-on-surface focus:border-deep-navy focus:ring-1 focus:ring-deep-navy outline-none transition-colors" id="search" placeholder="Contoh: Ahli K3 Umum..." type="text">
+</div>
+</div>
+<div class="w-full lg:w-1/4 flex flex-col gap-2">
+<label class="font-label-bold text-label-bold text-on-surface-variant" for="kategori">KATEGORI</label>
+<select class="w-full px-4 py-2 bg-surface border border-outline-variant rounded font-body-md text-on-surface focus:border-deep-navy focus:ring-1 focus:ring-deep-navy outline-none appearance-none cursor-pointer" id="kategori">
+<option value="">Semua Kategori</option>
+<option value="umum">K3 Umum</option>
+<option value="konstruksi">K3 Konstruksi</option>
+<option value="migas">K3 Migas</option>
+<option value="listrik">K3 Listrik</option>
+</select>
+</div>
+<div class="w-full lg:w-1/4 flex flex-col gap-2">
+<label class="font-label-bold text-label-bold text-on-surface-variant" for="kota">KOTA / METODE</label>
+<select class="w-full px-4 py-2 bg-surface border border-outline-variant rounded font-body-md text-on-surface focus:border-deep-navy focus:ring-1 focus:ring-deep-navy outline-none appearance-none cursor-pointer" id="kota">
+<option value="">Semua Lokasi</option>
+<option value="jakarta">Jakarta (Offline)</option>
+<option value="surabaya">Surabaya (Offline)</option>
+<option value="balikpapan">Balikpapan (Offline)</option>
+<option value="online">Online Training (Zoom)</option>
+</select>
+</div>
+<div class="w-full lg:w-1/4 flex flex-col gap-2">
+<label class="font-label-bold text-label-bold text-on-surface-variant" for="bulan">BULAN PELAKSANAAN</label>
+<select class="w-full px-4 py-2 bg-surface border border-outline-variant rounded font-body-md text-on-surface focus:border-deep-navy focus:ring-1 focus:ring-deep-navy outline-none appearance-none cursor-pointer" id="bulan">
+<option value="">Semua Bulan</option>
+<option value="juni">Juni 2026</option>
+<option value="juli">Juli 2026</option>
+<option value="agustus">Agustus 2026</option>
+</select>
+</div>
+<button class="hidden lg:flex w-auto px-6 py-2 bg-surface-container-high border border-outline-variant text-on-surface font-label-bold text-label-bold rounded hover:bg-surface-container-highest transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">filter_list</span> Filter
+            </button>
+</section>
+<!-- Responsive Data Table / Bento Cards -->
+<section class="w-full bg-surface border border-outline-variant rounded-xl overflow-hidden shadow-sm mb-stack-lg">
+<!-- Desktop Table Header -->
+<div class="hidden md:grid grid-cols-12 gap-4 px-6 py-4 bg-surface-container border-b border-outline-variant">
+<div class="col-span-4 font-label-bold text-label-bold text-on-surface-variant uppercase">Nama Program</div>
+<div class="col-span-3 font-label-bold text-label-bold text-on-surface-variant uppercase">Tanggal Pelaksanaan</div>
+<div class="col-span-2 font-label-bold text-label-bold text-on-surface-variant uppercase">Lokasi / Metode</div>
+<div class="col-span-2 font-label-bold text-label-bold text-on-surface-variant uppercase">Status Kelas</div>
+<div class="col-span-1 font-label-bold text-label-bold text-on-surface-variant uppercase text-right">Aksi</div>
+</div>
+<!-- Data Rows -->
+<div class="flex flex-col">
+<!-- Row 1 (Warning/Hampir Penuh) -->
+<div class="group border-b border-outline-variant last:border-0 hover:bg-surface-container-low transition-colors duration-200">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 md:px-6 md:py-5 items-center relative">
+<!-- Mobile Category Accent -->
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-alert-red rounded-tl md:rounded-none"></div>
+<div class="col-span-1 md:col-span-4 flex flex-col pl-3 md:pl-0">
+<span class="font-headline-sm text-headline-sm text-deep-navy mb-1">Pembinaan Ahli K3 Umum</span>
+<div class="flex items-center gap-2">
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] font-label-bold text-secondary tracking-wider">KEMNAKER</span>
+</div>
+</div>
+<div class="col-span-1 md:col-span-3 flex items-center gap-2 pl-3 md:pl-0">
+<span class="material-symbols-outlined text-outline">calendar_month</span>
+<span class="font-body-md text-on-surface">12 - 24 Juni 2026</span>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center gap-2 pl-3 md:pl-0">
+<span class="material-symbols-outlined text-outline">location_on</span>
+<span class="font-body-md text-on-surface">Jakarta (Offline)</span>
+</div>
+<div class="col-span-1 md:col-span-2 pl-3 md:pl-0">
+<span class="inline-flex items-center gap-1.5 bg-alert-red text-on-primary font-label-bold text-label-bold px-3 py-1 rounded-full"><span class="w-1.5 h-1.5 rounded-full bg-white"></span> Hampir Penuh</span>
+</div>
+<div class="col-span-1 md:col-span-1 flex justify-end pl-3 md:pl-0 mt-2 md:mt-0">
+<button class="w-full md:w-auto bg-safety-orange text-on-primary font-label-bold text-label-bold px-4 py-2 rounded hover:opacity-90 transition-opacity">
+                                Daftar
+                            </button>
+</div>
+</div>
+</div>
+<!-- Row 2 (Tersedia) -->
+<div class="group border-b border-outline-variant last:border-0 hover:bg-surface-container-low transition-colors duration-200">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 md:px-6 md:py-5 items-center relative">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-surface-tint rounded-tl md:rounded-none"></div>
+<div class="col-span-1 md:col-span-4 flex flex-col pl-3 md:pl-0">
+<span class="font-headline-sm text-headline-sm text-deep-navy mb-1">Ahli K3 Konstruksi Muda</span>
+<div class="flex items-center gap-2">
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] font-label-bold text-secondary tracking-wider">KEMNAKER</span>
+</div>
+</div>
+<div class="col-span-1 md:col-span-3 flex items-center gap-2 pl-3 md:pl-0">
+<span class="material-symbols-outlined text-outline">calendar_month</span>
+<span class="font-body-md text-on-surface">15 - 19 Juni 2026</span>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center gap-2 pl-3 md:pl-0">
+<span class="material-symbols-outlined text-outline">apartment</span>
+<span class="font-body-md text-on-surface">Surabaya (Offline)</span>
+</div>
+<div class="col-span-1 md:col-span-2 pl-3 md:pl-0">
+<span class="inline-flex items-center gap-1.5 bg-primary-fixed text-on-primary-fixed font-label-bold text-label-bold px-3 py-1 rounded-full">
+<span class="w-1.5 h-1.5 rounded-full bg-deep-navy"></span> Tersedia
+                            </span>
+</div>
+<div class="col-span-1 md:col-span-1 flex justify-end pl-3 md:pl-0 mt-2 md:mt-0">
+<button class="w-full md:w-auto bg-safety-orange text-on-primary font-label-bold text-label-bold px-4 py-2 rounded hover:opacity-90 transition-opacity">
+                                Daftar
+                            </button>
+</div>
+</div>
+</div>
+<!-- Row 3 (Tersedia / Online) -->
+<div class="group border-b border-outline-variant last:border-0 hover:bg-surface-container-low transition-colors duration-200">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-4 p-4 md:px-6 md:py-5 items-center relative">
+<div class="absolute left-0 top-0 bottom-0 w-1 bg-surface-tint rounded-tl md:rounded-none"></div>
+<div class="col-span-1 md:col-span-4 flex flex-col pl-3 md:pl-0">
+<span class="font-headline-sm text-headline-sm text-deep-navy mb-1">Auditor SMK3</span>
+<div class="flex items-center gap-2">
+<span class="bg-surface-container-high px-2 py-0.5 rounded text-[10px] font-label-bold text-secondary tracking-wider">BNSP</span>
+</div>
+</div>
+<div class="col-span-1 md:col-span-3 flex items-center gap-2 pl-3 md:pl-0">
+<span class="material-symbols-outlined text-outline">calendar_month</span>
+<span class="font-body-md text-on-surface">22 - 25 Juni 2026</span>
+</div>
+<div class="col-span-1 md:col-span-2 flex items-center gap-2 pl-3 md:pl-0">
+<span class="material-symbols-outlined text-outline">devices</span>
+<span class="font-body-md text-on-surface">Online Training</span>
+</div>
+<div class="col-span-1 md:col-span-2 pl-3 md:pl-0">
+<span class="inline-flex items-center gap-1.5 bg-primary-fixed text-on-primary-fixed font-label-bold text-label-bold px-3 py-1 rounded-full">
+<span class="w-1.5 h-1.5 rounded-full bg-deep-navy"></span> Tersedia
+                            </span>
+</div>
+<div class="col-span-1 md:col-span-1 flex justify-end pl-3 md:pl-0 mt-2 md:mt-0">
+<button class="w-full md:w-auto bg-safety-orange text-on-primary font-label-bold text-label-bold px-4 py-2 rounded hover:opacity-90 transition-opacity">
+                                Daftar
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA WhatsApp Banner -->
+<section class="bg-surface-container-lowest border border-outline-variant rounded-xl p-8 flex flex-col md:flex-row items-center justify-between gap-stack-lg shadow-[0px_10px_15px_-3px_rgba(0,31,63,0.1)] relative overflow-hidden">
+<div class="absolute right-0 top-0 bottom-0 w-1/3 bg-surface-container-low opacity-50 transform skew-x-12 translate-x-10 pointer-events-none"></div>
+<div class="flex items-start gap-4 z-10">
+<div class="w-12 h-12 rounded-full bg-surface-tint flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-on-primary" style="font-variation-settings: 'FILL' 1;">forum</span>
+</div>
+<div>
+<h3 class="font-headline-md text-headline-md text-deep-navy mb-2">Butuh Inhouse Training untuk Perusahaan?</h3>
+<p class="font-body-md text-body-md text-on-surface-variant max-w-xl">
+                        Jadwal publik tidak sesuai? Kami menyediakan solusi pelatihan khusus (Inhouse) yang disesuaikan dengan waktu dan kebutuhan operasional perusahaan Anda.
+                    </p>
+</div>
+</div>
+<div class="z-10 shrink-0 w-full md:w-auto">
+<a class="flex items-center justify-center gap-2 bg-deep-navy text-on-primary font-headline-sm text-headline-sm px-8 py-3 rounded hover:bg-primary-container transition-colors shadow-sm w-full" href="#">
+<span class="material-symbols-outlined">chat</span>
+                    Hubungi Tim Kami
+                </a>
+</div>
+</section>
+</main>
+<!-- Footer JSON Mapping -->
+<footer class="w-full py-section-padding px-gutter flex flex-col md:flex-row justify-between items-start gap-stack-lg bg-surface-container-highest dark:bg-surface-dim border-t border-outline-variant mt-auto">
+<div class="flex flex-col gap-stack-md max-w-sm">
+<div class="font-headline-sm text-headline-sm font-bold text-deep-navy">
+                ProSafe Indonesia
+            </div>
+<p class="font-body-sm text-body-sm text-on-surface">
+                Solusi pelatihan dan sertifikasi K3 terpercaya untuk memastikan keselamatan dan kesehatan kerja di lingkungan industri Anda.
+            </p>
+</div>
+<div class="flex flex-col md:flex-row gap-stack-lg flex-wrap justify-end font-body-sm text-body-sm text-on-surface">
+<ul class="flex flex-col gap-2">
+<li class=""><a class="text-on-secondary-container hover:text-safety-orange underline transition-all duration-300" href="#">Sitemap</a></li>
+<li class=""><a class="text-on-secondary-container hover:text-safety-orange underline transition-all duration-300" href="#">Address</a></li>
+</ul>
+<ul class="flex flex-col gap-2">
+<li class=""><a class="text-on-secondary-container hover:text-safety-orange underline transition-all duration-300" href="#">Email</a></li>
+<li class=""><a class="text-on-secondary-container hover:text-safety-orange underline transition-all duration-300" href="#">Phone</a></li>
+</ul>
+<ul class="flex flex-col gap-2">
+<li class=""><a class="text-on-secondary-container hover:text-safety-orange underline transition-all duration-300" href="#">PJK3</a></li>
+<li class=""><a class="text-on-secondary-container hover:text-safety-orange underline transition-all duration-300" href="#">BNSP</a></li>
+<li class=""><a class="text-on-secondary-container hover:text-safety-orange underline transition-all duration-300" href="#">ISO</a></li>
+</ul>
+</div>
+<div class="w-full mt-stack-lg pt-stack-sm border-t border-outline-variant md:hidden font-body-sm text-body-sm text-on-surface">
+             © 2024 ProSafe Indonesia. All rights reserved.
+        </div>
+</footer>
+<!-- Absolute positioned copyright for desktop aligning with layout -->
+<div class="hidden md:block w-full text-center py-4 bg-surface-container-highest border-t border-outline-variant font-body-sm text-body-sm text-on-surface">
+         © 2024 ProSafe Indonesia. All rights reserved.
+    </div>
+
+
+</body></html>
