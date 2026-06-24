@@ -16,40 +16,40 @@ export default function Navbar() {
     return (
         <>
             {/* Top Bar */}
-            <div className="hidden lg:block w-full z-50 bg-deep-navy text-white/90 text-[13px]">
-                <div className="max-w-[1280px] mx-auto px-6 py-2.5 flex justify-between items-center">
-                    <div className="flex items-center gap-5">
+            <div className="w-full z-50 bg-gradient-to-r from-[#001731] via-deep-navy to-[#002f5d] text-white/95 text-[11px] sm:text-xs lg:text-[13px] border-b border-safety-orange/30">
+                <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-2 lg:py-2.5 flex justify-between items-center">
+                    <div className="flex items-center gap-4 lg:gap-5">
                         <a href="tel:+6281222998847" className="flex items-center gap-1.5 hover:text-safety-orange transition-colors">
                             <span className="material-symbols-outlined icon-fill text-safety-orange" style={{ fontSize: '15px' }}>call</span>
-                            <span>+62 812-2299-8847</span>
+                            <span className="font-semibold text-white">+62 812-2299-8847</span>
                         </a>
-                        <span className="w-px h-3.5 bg-white/20" />
-                        <a href="mailto:prosafeindonesia@gmail.com" className="flex items-center gap-1.5 hover:text-safety-orange transition-colors">
+                        <span className="hidden sm:inline w-px h-3.5 bg-white/20" />
+                        <a href="mailto:prosafeindonesia@gmail.com" className="hidden sm:flex items-center gap-1.5 hover:text-safety-orange transition-colors">
                             <span className="material-symbols-outlined icon-fill text-safety-orange" style={{ fontSize: '15px' }}>mail</span>
                             <span>prosafeindonesia@gmail.com</span>
                         </a>
                     </div>
-                    <div className="flex items-center gap-5">
-                        <span className="flex items-center gap-1.5">
+                    <div className="flex items-center gap-4 lg:gap-5">
+                        <span className="hidden md:flex items-center gap-1.5">
                             <span className="material-symbols-outlined icon-fill text-safety-orange" style={{ fontSize: '15px' }}>schedule</span>
                             <span>Senin – Jumat, 08:00 – 17:00 WIB</span>
                         </span>
-                        <span className="w-px h-3.5 bg-white/20" />
-                        <Link href="/cek-sertifikat" className={`flex items-center gap-1.5 font-semibold transition-colors ${isActive('/cek-sertifikat') ? 'text-safety-orange' : 'hover:text-safety-orange'}`}>
-                            <span className="material-symbols-outlined icon-fill" style={{ fontSize: '15px' }}>verified</span>
-                            Cek Sertifikat
+                        <span className="hidden md:inline w-px h-3.5 bg-white/20" />
+                        <Link href="/cek-sertifikat" className={`flex items-center gap-1 px-2.5 py-0.5 rounded-full font-bold transition-all text-[10px] sm:text-xs border ${isActive('/cek-sertifikat') ? 'bg-safety-orange border-safety-orange text-white' : 'bg-white/5 border-white/10 text-white/90 hover:bg-white/10 hover:text-safety-orange'}`}>
+                            <span className="material-symbols-outlined icon-fill text-safety-orange" style={{ fontSize: '14px' }}>verified</span>
+                            <span>Cek Sertifikat</span>
                         </Link>
                     </div>
                 </div>
             </div>
 
             {/* Main Header */}
-            <header className="sticky top-0 w-full z-50 bg-white border-b border-outline-variant/60 shadow-sm">
+            <header className="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-outline-variant/60 shadow-sm">
                 <div className="max-w-[1280px] mx-auto flex items-center justify-between px-6 h-16">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2.5 shrink-0">
                         <img src="/images/logo-prosafe.png" alt="ProSafe Indonesia" className="h-9 w-9 object-contain" />
-                        <div className="hidden sm:block leading-tight">
+                        <div className="leading-tight">
                             <span className="font-heading text-base font-bold text-deep-navy block">ProSafe</span>
                             <span className="font-heading text-[10px] font-semibold text-text-secondary uppercase tracking-wider">Indonesia</span>
                         </div>
@@ -138,10 +138,17 @@ export default function Navbar() {
                         </Link>
                     </div>
 
-                    {/* Mobile Menu Button */}
-                    <button className="lg:hidden text-deep-navy p-1 flex items-center justify-center rounded-md hover:bg-surface-gray transition-colors active:scale-95" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Menu Utama">
-                        <span className="material-symbols-outlined" style={{ fontSize: '26px' }}>{mobileMenuOpen ? 'close' : 'menu'}</span>
-                    </button>
+                    {/* Mobile Menu Button & Quick Actions */}
+                    <div className="flex items-center gap-2.5 lg:hidden">
+                        <a href="https://wa.me/6281222998847" className="w-9 h-9 text-wa-green hover:text-wa-green/80 transition-all flex items-center justify-center rounded-full bg-wa-green/10 border border-wa-green/20 active:scale-95 shadow-sm" aria-label="Chat WhatsApp">
+                            <svg fill="currentColor" viewBox="0 0 16 16" className="w-5 h-5 shrink-0" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.57 6.57 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
+                            </svg>
+                        </a>
+                        <button className="w-9 h-9 text-deep-navy flex items-center justify-center rounded-full bg-surface-gray hover:bg-surface-gray/80 border border-outline-variant/40 transition-all active:scale-95 shadow-sm" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Menu Utama">
+                            <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>{mobileMenuOpen ? 'close' : 'menu'}</span>
+                        </button>
+                    </div>
                 </div>
             </header>
 

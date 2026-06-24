@@ -1,3 +1,9 @@
+/* Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Material Symbols */
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
@@ -5,12 +11,6 @@
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
 @custom-variant dark (&:is(.dark *));
-
-/* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
-
-/* Material Symbols */
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
 @theme {
     --font-sans: 'Open Sans', ui-sans-serif, system-ui, sans-serif;
@@ -497,11 +497,10 @@ body {
 /* ═══════════════════════════════════════════════════
    UI/UX Pro Max v2: Button System (MASTER.md specs)
    ═══════════════════════════════════════════════════ */
-
 .btn-prosafe-primary {
     background: var(--color-safety-orange);
     color: white;
-    padding: 14px 28px;
+    padding: 12px 24px;
     border-radius: 12px;
     font-weight: 600;
     font-family: var(--font-heading);
@@ -513,6 +512,12 @@ body {
     align-items: center;
     gap: 8px;
     box-shadow: 0 2px 8px rgba(255, 133, 27, 0.25);
+}
+
+@media (min-width: 640px) {
+    .btn-prosafe-primary {
+        padding: 14px 28px;
+    }
 }
 
 .btn-prosafe-primary:hover {
@@ -529,7 +534,7 @@ body {
     background: transparent;
     color: var(--color-deep-navy);
     border: 2px solid var(--color-deep-navy);
-    padding: 12px 28px;
+    padding: 10px 24px;
     border-radius: 12px;
     font-weight: 600;
     font-family: var(--font-heading);
@@ -539,6 +544,12 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+}
+
+@media (min-width: 640px) {
+    .btn-prosafe-secondary {
+        padding: 12px 28px;
+    }
 }
 
 .btn-prosafe-secondary:hover {

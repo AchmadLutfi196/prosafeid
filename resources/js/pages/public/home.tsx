@@ -92,50 +92,70 @@ export default function Home() {
             </Head>
 
             {/* Hero Section */}
-            <section className="pt-8 pb-16 lg:pt-10 lg:pb-24 px-6 max-w-[1280px] mx-auto">
-                <div className="flex flex-col lg:flex-row items-center gap-12">
-                    <div className="flex-1 space-y-6">
-                        <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-surface-gray border border-outline-variant rounded-full">
-                            <span className="w-2 h-2 rounded-full bg-safety-orange animate-pulse" />
-                            <span className="text-xs font-bold text-text-secondary uppercase tracking-wider">Pusat Pelatihan K3 & Rescue</span>
+            <section className="relative min-h-[600px] lg:min-h-[680px] xl:min-h-[720px] flex items-center overflow-hidden bg-deep-navy">
+                {/* Background Image with Cover and Alignment */}
+                <div className="absolute inset-0 bg-cover bg-center lg:bg-[center_right_20%] z-0" style={{ backgroundImage: "url('/images/hero-bg.jpg')" }} />
+                
+                {/* Gradient Overlay for Text Readability */}
+                <div className="absolute inset-0 bg-gradient-to-b lg:bg-gradient-to-r from-deep-navy via-deep-navy/95 lg:via-deep-navy/80 to-deep-navy/15 z-10" />
+                
+                {/* Dynamic Radial Glow in top left corner */}
+                <div className="absolute top-0 left-0 w-[450px] h-[450px] bg-safety-orange/10 rounded-full blur-[120px] pointer-events-none z-10" />
+                
+                {/* Grid Overlay inside the Hero */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff03_1px,transparent_1px),linear-gradient(to_bottom,#ffffff03_1px,transparent_1px)] bg-[size:36px_36px] pointer-events-none z-10 opacity-60" />
+
+                {/* Content Container */}
+                <div className="relative px-6 py-20 lg:py-28 max-w-[1280px] mx-auto w-full z-20">
+                    <div className="max-w-2xl lg:max-w-[650px] space-y-6">
+                        {/* Premium Badge */}
+                        <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-white/10 border border-white/15 rounded-full backdrop-blur-md shadow-sm">
+                            <span className="relative flex h-2 w-2">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-safety-orange opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-safety-orange"></span>
+                            </span>
+                            <span className="text-xs font-heading font-black text-safety-orange uppercase tracking-wider">
+                                Pusat Pelatihan K3 & Rescue Resmi
+                            </span>
                         </div>
-                        <h1 className="font-heading text-3xl md:text-5xl font-bold text-deep-navy leading-tight">
-                            Pelatihan K3 & Emergency Response Bersertifikasi — Surabaya & Seluruh Indonesia
+                        
+                        {/* Premium Headline */}
+                        <h1 className="font-heading text-[34px] sm:text-5xl lg:text-6xl font-black text-white leading-[1.15] sm:leading-[1.1] tracking-tight">
+                            Pelatihan K3 & <span className="text-transparent bg-clip-text bg-gradient-to-r from-safety-orange to-orange-500">Emergency Response</span> Bersertifikasi
                         </h1>
-                        <p className="text-lg text-on-surface-variant max-w-xl leading-relaxed">
-                            Penyedia jasa safety training dan sertifikasi kompetensi K3 industri, maritime, offshore, and rescue terbaik untuk kesiapan tim dan kepatuhan perusahaan Anda.
+                        
+                        {/* Description */}
+                        <p className="text-sm sm:text-base md:text-lg text-slate-200 leading-relaxed max-w-xl">
+                            Penyedia jasa safety training dan sertifikasi kompetensi K3 industri, maritime, offshore, dan rescue terbaik untuk kesiapan tim dan kepatuhan perusahaan Anda. Surabaya & Seluruh Indonesia.
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                            <a href="https://wa.me/6281222998847" className="bg-wa-green text-white font-heading font-semibold px-8 py-4 rounded-xl text-center hover:bg-wa-green/90 shadow-md hover:shadow-xl hover:shadow-wa-green/20 flex items-center justify-center gap-3 active:scale-[0.98]">
-                                <svg fill="currentColor" viewBox="0 0 16 16" className="w-5.5 h-5.5 shrink-0" xmlns="http://www.w3.org/2000/svg" style={{ width: '22px', height: '22px' }}>
+                        
+                        {/* Action Buttons */}
+                        <div className="flex flex-col sm:flex-row gap-4 pt-2">
+                            <a href="https://wa.me/6281222998847" className="bg-safety-orange text-white font-heading font-bold px-8 py-4 rounded-xl text-center hover:bg-safety-orange/90 shadow-md hover:shadow-xl hover:shadow-safety-orange/20 flex items-center justify-center gap-3 transition-all duration-300 active:scale-[0.98] group">
+                                <svg fill="currentColor" viewBox="0 0 16 16" className="w-5.5 h-5.5 shrink-0 group-hover:rotate-12 transition-transform" xmlns="http://www.w3.org/2000/svg" style={{ width: '22px', height: '22px' }}>
                                     <path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.57 6.57 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/>
                                 </svg>
                                 <span>Konsultasi via WhatsApp</span>
                             </a>
-                            <Link href="/pelatihan/kemnaker" className="border-2 border-deep-navy text-deep-navy font-heading font-semibold px-8 py-4 rounded-xl text-center hover:bg-deep-navy hover:text-white active:scale-[0.98]">
+                            <Link href="/pelatihan/kemnaker" className="border-2 border-white/20 text-white font-heading font-bold px-8 py-4 rounded-xl text-center hover:bg-white hover:text-deep-navy transition-all duration-300 active:scale-[0.98]">
                                 Lihat Program Training
                             </Link>
                         </div>
-                        <div className="pt-6 flex items-center gap-4">
-                            <span className="text-xs font-bold text-text-secondary uppercase tracking-wider">Terakreditasi:</span>
-                            <div className="flex gap-2">
-                                {['Kemnaker RI', 'BNSP', 'ISO'].map(badge => (
-                                    <span key={badge} className="text-xs font-bold text-deep-navy bg-primary-fixed/50 px-3 py-1.5 rounded-md border border-primary-fixed badge-trust">{badge}</span>
+                        
+                        {/* Premium Accreditations (styled for dark background) */}
+                        <div className="pt-6 flex flex-wrap items-center gap-3">
+                            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Terakreditasi & Resmi:</span>
+                            <div className="flex flex-wrap gap-2">
+                                {[
+                                    { label: 'Kemnaker RI', icon: 'verified_user' },
+                                    { label: 'BNSP', icon: 'workspace_premium' },
+                                    { label: 'ISO 9001:2015', icon: 'task_alt' }
+                                ].map((badge, idx) => (
+                                    <span key={idx} className="inline-flex items-center gap-1.5 text-[11px] font-black text-white bg-white/5 border border-white/10 px-3.5 py-2 rounded-xl shadow-md backdrop-blur-md badge-trust">
+                                        <span className="material-symbols-outlined text-safety-orange text-sm">{badge.icon}</span>
+                                        {badge.label}
+                                    </span>
                                 ))}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="flex-1 relative w-full h-[350px] md:h-[500px] rounded-2xl overflow-hidden border border-outline-variant shadow-lg">
-                        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('https://lh3.googleusercontent.com/aida-public/AB6AXuAt_LezpZvBlUQJnh_aglc-ALGkFFTe4Jox0pmmkokNKUYcBh4vCIE1QM2PG5lgRFaiChPir2uKHt_lQbVvLIHjD0fMMnGubQ-HIdCsrkaGYDu3HDDhpA_XYchJEDSu0mGBGup_fKp62cUW0enYHofRhSK6xdT3QSGe9EKrAlPsQiJ_bwg39R9Tdqst4K6jEVGDCFOLmJoaOMGtTp_-_wRV9ORGE2qJTbWRtEwKQWgL-AIIlbgWEr6iziCH4Avi6d9OMuN6A5V-RUkE')` }} />
-                        <div className="absolute bottom-6 left-6 right-6 lg:right-auto lg:w-80 bg-white/90 backdrop-blur-md p-5 rounded-xl border border-outline-variant shadow-lg">
-                            <div className="flex items-start gap-3">
-                                <div className="w-11 h-11 rounded-full bg-safety-orange/10 flex items-center justify-center shrink-0">
-                                    <span className="material-symbols-outlined icon-fill text-safety-orange">verified</span>
-                                </div>
-                                <div>
-                                    <h4 className="font-heading font-semibold text-deep-navy">Sertifikasi Resmi</h4>
-                                    <p className="text-sm text-on-surface-variant mt-0.5">Sertifikat diakui secara nasional oleh KEMNAKER & BNSP.</p>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -143,17 +163,19 @@ export default function Home() {
             </section>
 
             {/* Highlights Banner */}
-            <section className="bg-surface-gray py-8 border-y border-outline-variant/60">
-                <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-2 lg:grid-cols-4 gap-6 text-center lg:text-left">
+            <section className="bg-surface-gray py-6 sm:py-8 border-y border-outline-variant/60">
+                <div className="max-w-[1280px] mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                     {[
                         { icon: 'domain', text: 'In-house & On-Site Training' },
                         { icon: 'workspace_premium', text: 'Sertifikat Peserta' },
                         { icon: 'psychology', text: 'Berbasis Praktik Nyata' },
                         { icon: 'groups', text: 'Instruktur Berpengalaman' }
                     ].map((item, idx) => (
-                        <div key={idx} className="flex flex-col lg:flex-row items-center gap-3 justify-center lg:justify-start">
-                            <span className="material-symbols-outlined text-safety-orange text-3xl shrink-0">{item.icon}</span>
-                            <span className="font-heading font-semibold text-deep-navy text-sm">{item.text}</span>
+                        <div key={idx} className="flex flex-row items-center gap-3.5 px-4 py-3.5 sm:p-0 bg-white sm:bg-transparent rounded-xl border border-outline-variant/30 sm:border-none shadow-sm sm:shadow-none">
+                            <div className="w-10 h-10 sm:w-auto sm:h-auto rounded-lg bg-safety-orange/10 sm:bg-transparent flex items-center justify-center shrink-0">
+                                <span className="material-symbols-outlined text-safety-orange text-[22px] sm:text-3xl shrink-0">{item.icon}</span>
+                            </div>
+                            <span className="font-heading font-semibold text-deep-navy text-sm leading-snug">{item.text}</span>
                         </div>
                     ))}
                 </div>
