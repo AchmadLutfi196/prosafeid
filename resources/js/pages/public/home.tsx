@@ -1,6 +1,6 @@
 import { Link, Head } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
-import { clientLogos, testimonials, blogPosts, instagramPosts, legalitasBadges } from '@/data/mockData';
+import { clientLogos, testimonials, blogPosts, legalitasBadges, trainingSchedule } from '@/data/mockData';
 import BrandLogo from '@/components/public/BrandLogos';
 import CustomSelect from '@/components/public/CustomSelect';
 
@@ -123,7 +123,7 @@ export default function Home() {
                         
                         {/* Premium Headline */}
                         <h1 className="font-heading text-[34px] sm:text-5xl lg:text-6xl font-black text-white leading-[1.15] sm:leading-[1.1] tracking-tight">
-                            Pelatihan K3 & <span className="text-transparent bg-clip-text bg-gradient-to-r from-safety-orange to-orange-500">Emergency Response</span> Bersertifikasi
+                            Pelatihan K3 & <span className="text-safety-orange">Emergency Response</span> Bersertifikasi
                         </h1>
                         
                         {/* Description */}
@@ -145,18 +145,17 @@ export default function Home() {
                         </div>
                         
                         {/* Premium Accreditations (styled for dark background) */}
-                        <div className="pt-6 flex flex-wrap items-center gap-3">
+                        <div className="pt-6 flex flex-wrap items-center gap-4">
                             <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Terakreditasi & Resmi:</span>
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap gap-3">
                                 {[
-                                    { label: 'Kemnaker RI', icon: 'verified_user' },
-                                    { label: 'BNSP', icon: 'workspace_premium' },
-                                    { label: 'ISO 9001:2015', icon: 'task_alt' }
+                                    { label: 'Kemnaker RI', image: '/images/badges/kemnaker.png' },
+                                    { label: 'BNSP', image: '/images/badges/bnsp.png' },
+                                    { label: 'ISO 9001:2015', image: '/images/badges/iso9001.svg' }
                                 ].map((badge, idx) => (
-                                    <span key={idx} className="inline-flex items-center gap-1.5 text-[11px] font-black text-white bg-white/5 border border-white/10 px-3.5 py-2 rounded-xl shadow-md backdrop-blur-md badge-trust">
-                                        <span className="material-symbols-outlined text-safety-orange text-sm">{badge.icon}</span>
-                                        {badge.label}
-                                    </span>
+                                    <div key={idx} className="h-10 px-4 flex items-center justify-center bg-white rounded-xl shadow-md transition-transform duration-300 hover:scale-110 cursor-pointer" title={badge.label}>
+                                        <img src={badge.image} alt={badge.label} className="h-7 w-auto object-contain" />
+                                    </div>
                                 ))}
                             </div>
                         </div>
@@ -203,41 +202,135 @@ export default function Home() {
             </section>
 
             {/* About Brief */}
-            <section className="py-20 px-6 max-w-[1280px] mx-auto reveal">
-                <div className="grid md:grid-cols-2 gap-12 items-center">
-                    <div className="relative rounded-2xl overflow-hidden border border-outline-variant shadow-md">
-                        <img alt="Training Session" className="w-full h-[400px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqyKcQY9gpntiRfAOpKbsV-wa2c67lnRTK6Ej7Rg2MKZqO1HJFU4F5LFpULQ5rcWj4XjDY-JqTjMKKbjShoDr3bP-XN2Omi92EQfxJrhL1Zb5zBU1wCml69VtsinDLo1_NM9PvWjv9KQc3Kam-GkQ_r5LrgAf0JvAiYExrOWLHXHHKGvHQ3jGSMbOO29MaXPqqh0jCV9MxAY96v38wN7zbfIKAW-b9VfW3R_wctwp51-tOOWRbE_U3XmfdqhSULkVa2l4fs7uALP49" />
+            <section className="py-12 md:py-24 px-6 max-w-[1280px] mx-auto reveal">
+                <div className="grid md:grid-cols-2 gap-10 lg:gap-16 items-center">
+                    {/* Image — layered floating frame */}
+                    <div className="relative">
+                        {/* Background accent shape */}
+                        <div className="absolute -inset-3 md:-inset-4 bg-safety-orange/[0.06] rounded-3xl -rotate-2" />
+                        <div className="relative rounded-2xl overflow-hidden shadow-xl shadow-deep-navy/10">
+                            <img alt="Sesi pelatihan K3 di pusat training ProSafe Indonesia" className="w-full h-[360px] md:h-[420px] object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqyKcQY9gpntiRfAOpKbsV-wa2c67lnRTK6Ej7Rg2MKZqO1HJFU4F5LFpULQ5rcWj4XjDY-JqTjMKKbjShoDr3bP-XN2Omi92EQfxJrhL1Zb5zBU1wCml69VtsinDLo1_NM9PvWjv9KQc3Kam-GkQ_r5LrgAf0JvAiYExrOWLHXHHKGvHQ3jGSMbOO29MaXPqqh0jCV9MxAY96v38wN7zbfIKAW-b9VfW3R_wctwp51-tOOWRbE_U3XmfdqhSULkVa2l4fs7uALP49" />
+                        </div>
                     </div>
-                    <div className="space-y-6">
-                        <h2 className="font-heading text-2xl md:text-3xl font-bold text-deep-navy">Tentang Pro Safe Indonesia</h2>
-                        <p className="text-lg text-on-surface-variant leading-relaxed">
+
+                    {/* Text content */}
+                    <div className="space-y-5">
+                        <p className="text-safety-orange font-heading font-bold text-xs uppercase tracking-[0.2em]">Tentang Kami</p>
+                        <h2 className="font-heading text-2xl md:text-3xl lg:text-[2.1rem] font-bold text-deep-navy leading-snug" style={{ textWrap: 'balance' } as React.CSSProperties}>
+                            Tentang Pro Safe Indonesia
+                        </h2>
+                        <p className="text-base text-on-surface-variant leading-relaxed">
                             ProSafe Indonesia didirikan dengan misi untuk membantu organisasi dan tenaga profesional di seluruh Indonesia membangun standar keselamatan kerja (K3) tertinggi melalui pelatihan bersertifikasi resmi, simulasi berbasis praktik nyata, dan pendampingan implementasi keselamatan kerja komprehensif.
                         </p>
-                        <ul className="space-y-4">
+                        <ul className="space-y-3 pt-1">
                             {[
                                 { title: 'Instruktur Tersertifikasi', desc: 'Praktisi berpengalaman dengan lisensi resmi.' },
                                 { title: 'Fasilitas Modern', desc: 'Pusat pelatihan dilengkapi simulasi praktik standar industri.' },
                             ].map(item => (
-                                <li key={item.title} className="flex items-start gap-3">
-                                    <span className="material-symbols-outlined text-safety-orange mt-0.5">check_circle</span>
+                                <li key={item.title} className="flex items-start gap-3.5 bg-surface-gray rounded-xl px-4 py-3.5 border border-outline-variant/40">
+                                    <span className="material-symbols-outlined icon-fill text-safety-orange text-xl mt-0.5 shrink-0">check_circle</span>
                                     <div>
-                                        <h4 className="font-heading font-semibold text-deep-navy">{item.title}</h4>
-                                        <p className="text-sm text-on-surface-variant">{item.desc}</p>
+                                        <h4 className="font-heading font-bold text-deep-navy text-[15px] leading-snug">{item.title}</h4>
+                                        <p className="text-xs text-on-surface-variant mt-0.5 leading-relaxed">{item.desc}</p>
                                     </div>
                                 </li>
                             ))}
                         </ul>
-                        <Link href="/tentang-kami" className="arrow-link link-underline text-deep-navy font-heading font-semibold hover:text-safety-orange inline-flex items-center gap-1">
-                            Pelajari Lebih Lanjut <span className="material-symbols-outlined">arrow_forward</span>
-                        </Link>
+                        <div className="pt-2">
+                            <Link href="/tentang-kami" className="arrow-link link-underline text-deep-navy font-heading font-semibold hover:text-safety-orange inline-flex items-center gap-1">
+                                Pelajari Lebih Lanjut <span className="material-symbols-outlined">arrow_forward</span>
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </section>
 
+            {/* Layanan Unggulan */}
+            <section className="py-12 md:py-20 px-6 max-w-[1280px] mx-auto reveal">
+                <div className="text-center max-w-3xl mx-auto mb-8 md:mb-16">
+                    <p className="text-safety-orange font-heading font-bold text-xs uppercase tracking-[0.2em] mb-2">Layanan Kami</p>
+                    <h2 className="font-heading text-2xl md:text-3xl lg:text-[2.1rem] font-bold text-deep-navy mb-3">Layanan Unggulan ProSafe</h2>
+                    <div className="section-divider" />
+                    <p className="text-base text-on-surface-variant mt-3">Solusi komprehensif keselamatan kerja (K3) untuk kesiapan operasional dan kepatuhan hukum perusahaan Anda.</p>
+                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {[
+                        {
+                            icon: 'shield_person',
+                            title: 'Pelatihan Kemnaker RI',
+                            desc: 'Sertifikasi K3 resmi penunjukan Kementerian Ketenagakerjaan RI untuk legalitas perusahaan.',
+                            href: '/pelatihan/kemnaker'
+                        },
+                        {
+                            icon: 'workspace_premium',
+                            title: 'Sertifikasi BNSP',
+                            desc: 'Sertifikasi kompetensi profesi K3 skala nasional berlisensi Badan Nasional Sertifikasi Profesi.',
+                            href: '/pelatihan/bnsp'
+                        },
+                        {
+                            icon: 'local_fire_department',
+                            title: 'K3 Migas & Offshore',
+                            desc: 'Pelatihan keselamatan khusus sektor minyak, gas bumi, maritim, dan lepas pantai.',
+                            href: '/pelatihan/migas'
+                        },
+                        {
+                            icon: 'menu_book',
+                            title: 'Non-Sertifikasi',
+                            desc: 'Pelatihan teknis spesifik & awareness internal untuk memperkuat kompetensi K3 tim Anda.',
+                            href: '/pelatihan/non-sertifikasi'
+                        },
+                        {
+                            icon: 'domain',
+                            title: 'Corporate In-House',
+                            desc: 'Penyelenggaraan safety training kustom langsung di lokasi operasional perusahaan Anda.',
+                            href: '/corporate'
+                        },
+                        {
+                            icon: 'analytics',
+                            title: 'Consulting K3 & Audit',
+                            desc: 'Pendampingan penyusunan dokumen SMK3, HIRADC, CSMS, dan persiapan audit eksternal.',
+                            href: '/corporate'
+                        },
+                        {
+                            icon: 'fact_check',
+                            title: 'ISO Consulting',
+                            desc: 'Konsultasi sertifikasi sistem manajemen ISO 9001, ISO 14001, dan ISO 45001.',
+                            href: '/corporate'
+                        },
+                        {
+                            icon: 'emergency',
+                            title: 'Emergency & Rescue',
+                            desc: 'Pelatihan khusus tim pemadam kebakaran, penyelamat ketinggian, dan ruang terbatas.',
+                            href: '/pelatihan/non-sertifikasi'
+                        }
+                    ].map((item, idx) => (
+                        <Link 
+                            key={idx} 
+                            href={item.href}
+                            className="group block bg-white border border-outline-variant hover:border-safety-orange hover:shadow-lg rounded-2xl p-6 transition-all duration-300 active:scale-[0.98] relative overflow-hidden"
+                        >
+                            <div className="absolute top-0 right-0 w-24 h-24 bg-safety-orange/[0.02] rounded-full translate-x-8 -translate-y-8 group-hover:scale-150 transition-transform duration-500" />
+                            <div className="w-12 h-12 rounded-xl bg-safety-orange/10 flex items-center justify-center mb-5 text-safety-orange group-hover:bg-safety-orange group-hover:text-white transition-colors duration-300 shadow-inner">
+                                <span className="material-symbols-outlined text-2xl">{item.icon}</span>
+                            </div>
+                            <h3 className="font-heading text-base font-bold text-deep-navy mb-2 group-hover:text-safety-orange transition-colors">
+                                {item.title}
+                            </h3>
+                            <p className="text-xs text-on-surface-variant leading-relaxed mb-4">
+                                {item.desc}
+                            </p>
+                            <span className="inline-flex items-center text-safety-orange font-heading text-[11px] font-bold uppercase tracking-wider group-hover:translate-x-1 transition-transform duration-300">
+                                Selengkapnya <span className="material-symbols-outlined text-xs ml-1 font-bold">arrow_forward</span>
+                            </span>
+                        </Link>
+                    ))}
+                </div>
+            </section>
+
             {/* Featured Programs */}
-            <section className="py-20 px-6 bg-surface-gray border-y border-outline-variant reveal">
+            <section className="py-12 md:py-20 px-6 bg-surface-gray border-y border-outline-variant reveal">
                 <div className="max-w-[1280px] mx-auto">
-                    <div className="text-center max-w-3xl mx-auto mb-12">
+                    <div className="text-center max-w-3xl mx-auto mb-6 md:mb-12">
                         <h2 className="font-heading text-2xl md:text-3xl font-bold text-deep-navy mb-3">Program Unggulan Kami</h2>
                         <div className="section-divider" />
                         <p className="text-lg text-on-surface-variant">Program pelatihan K3 dasar yang paling dibutuhkan di berbagai sektor industri.</p>
@@ -313,8 +406,8 @@ export default function Home() {
             </section>
 
             {/* Maritime & Offshore specialized */}
-            <section className="py-20 px-6 max-w-[1280px] mx-auto reveal">
-                <div className="text-center max-w-3xl mx-auto mb-12">
+            <section className="py-12 md:py-20 px-6 max-w-[1280px] mx-auto reveal">
+                <div className="text-center max-w-3xl mx-auto mb-6 md:mb-12">
                     <h2 className="font-heading text-2xl md:text-3xl font-bold text-deep-navy mb-3">Program Khusus Maritime & Offshore</h2>
                     <div className="section-divider" />
                     <p className="text-lg text-on-surface-variant">Pelatihan spesialisasi keselamatan laut dan lepas pantai dengan standar industri global.</p>
@@ -376,10 +469,86 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* Jadwal Training Terbaru */}
+            <section className="py-12 md:py-20 px-6 max-w-[1000px] mx-auto reveal">
+                <div className="text-center max-w-3xl mx-auto mb-6 md:mb-12">
+                    <h2 className="font-heading text-3xl md:text-4xl font-extrabold text-deep-navy mb-2">
+                        Jadwal Pelatihan <span className="text-safety-orange">Juli & Agustus</span>
+                    </h2>
+                    <p className="font-heading text-lg md:text-xl font-black text-deep-navy/85 uppercase tracking-wider">
+                        BNSP, KEMNAKER RI, MIGAS
+                    </p>
+                </div>
+
+                <div className="space-y-12">
+                    {[
+                        { 
+                            title: 'Pelatihan dan Pembinaan KEMNAKER RI', 
+                            items: trainingSchedule.filter(s => s.category === 'KEMNAKER') 
+                        },
+                        { 
+                            title: 'Pelatihan dan Sertifikasi BNSP', 
+                            items: trainingSchedule.filter(s => s.category === 'BNSP') 
+                        },
+                        { 
+                            title: 'Pelatihan K3 Migas & Offshore', 
+                            items: trainingSchedule.filter(s => s.category === 'MIGAS') 
+                        }
+                    ].map((group, groupIdx) => (
+                        <div key={groupIdx} className="space-y-3">
+                            <h3 className="font-heading text-lg md:text-xl font-bold text-deep-navy border-b border-outline-variant/60 pb-2">
+                                {group.title}
+                            </h3>
+                            <div className="overflow-x-auto rounded-xl border border-outline-variant shadow-sm">
+                                <table className="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr className="bg-deep-navy text-white text-xs md:text-sm font-bold font-heading">
+                                            <th className="py-3 px-4 md:px-6 w-[50%]">Skema</th>
+                                            <th className="py-3 px-4 md:px-6 w-[25%]">Jadwal</th>
+                                            <th className="py-3 px-4 md:px-6 w-[25%]">Pelaksanaan</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {group.items.map((sch, itemIdx) => (
+                                            <tr 
+                                                key={sch.id}
+                                                onClick={() => {
+                                                    window.open(`https://wa.me/6281222998847?text=Halo%20Admin,%20saya%20tertarik%20mendaftar%20kelas%20${encodeURIComponent(sch.program)}%20jadwal%20${encodeURIComponent(sch.date)}.`, '_blank');
+                                                }}
+                                                className={`text-xs md:text-sm text-deep-navy cursor-pointer hover:bg-safety-orange/5 transition-colors border-b border-outline-variant/50 last:border-b-0 ${
+                                                    itemIdx % 2 === 1 ? 'bg-surface-gray' : 'bg-white'
+                                                }`}
+                                            >
+                                                <td className="py-3.5 px-4 md:px-6 font-semibold flex items-center gap-2.5">
+                                                    <span className="material-symbols-outlined icon-fill text-safety-orange text-base md:text-lg shrink-0">check_circle</span>
+                                                    <span>{sch.program}</span>
+                                                </td>
+                                                <td className="py-3.5 px-4 md:px-6 text-on-surface-variant">
+                                                    {sch.date}
+                                                </td>
+                                                <td className="py-3.5 px-4 md:px-6 italic text-on-surface-variant font-medium">
+                                                    {sch.method}
+                                                </td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="mt-12 text-center">
+                    <Link href="/jadwal" className="btn-prosafe-secondary inline-flex items-center gap-2 text-sm px-8 py-3.5 shadow-sm">
+                        <span className="material-symbols-outlined text-sm">calendar_month</span> Lihat Semua Jadwal Training
+                    </Link>
+                </div>
+            </section>
+
             {/* Mengapa Memilih Kami */}
-            <section className="py-20 px-6 bg-surface-gray border-y border-outline-variant reveal">
+            <section className="py-12 md:py-20 px-6 bg-surface-gray border-y border-outline-variant reveal">
                 <div className="max-w-[1280px] mx-auto">
-                    <div className="text-center max-w-3xl mx-auto mb-12">
+                    <div className="text-center max-w-3xl mx-auto mb-6 md:mb-12">
                         <h2 className="font-heading text-2xl md:text-3xl font-bold text-deep-navy mb-3">Mengapa Memilih Pro Safe Indonesia</h2>
                         <div className="section-divider" />
                         <p className="text-lg text-on-surface-variant">Layanan safety training prima dengan komitmen kepuasan dan kualitas sertifikasi terbaik.</p>
@@ -406,33 +575,111 @@ export default function Home() {
             </section>
 
             {/* Target Peserta */}
-            <section className="py-20 px-6 max-w-[1280px] mx-auto reveal">
-                <div className="text-center max-w-3xl mx-auto mb-12">
+            <section className="py-12 md:py-20 px-6 max-w-[1280px] mx-auto reveal">
+                <div className="text-center max-w-3xl mx-auto mb-6 md:mb-12">
                     <h2 className="font-heading text-2xl md:text-3xl font-bold text-deep-navy mb-3">Industri Target & Peserta</h2>
                     <div className="section-divider" />
                     <p className="text-lg text-on-surface-variant">Layanan kami dirancang untuk membekali tenaga kerja di berbagai sektor berisiko tinggi.</p>
                 </div>
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
                     {[
-                        { icon: 'local_gas_station', label: 'Minyak & Gas (Migas)', image: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=600&q=80' },
-                        { icon: 'precision_manufacturing', label: 'Manufaktur & Pabrik', image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80' },
-                        { icon: 'construction', label: 'Konstruksi & Proyek', image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=600&q=80' },
-                        { icon: 'engineering', label: 'Pertambangan', image: 'https://images.unsplash.com/photo-1603126857599-f6e157fa2fe6?auto=format&fit=crop&w=600&q=80' },
-                        { icon: 'directions_boat', label: 'Maritim & Perkapalan', image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=600&q=80' },
-                        { icon: 'hotel', label: 'Pariwisata & Perhotelan', image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80' },
-                        { icon: 'local_hospital', label: 'Rumah Sakit & Medis', image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80' },
-                        { icon: 'school', label: 'Lembaga Pendidikan', image: 'https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=600&q=80' }
+                        {
+                            label: 'Minyak & Gas',
+                            desc: 'K3 operasional rig, refinery & distribusi migas.',
+                            image: 'https://images.unsplash.com/photo-1513828583688-c52646db42da?auto=format&fit=crop&w=600&q=80',
+                            tags: ['Migas', 'Offshore'],
+                            tintFrom: 'rgba(40,35,20,0.92)',
+                        },
+                        {
+                            label: 'Manufaktur',
+                            desc: 'Sertifikasi keselamatan lini produksi & pabrik.',
+                            image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80',
+                            tags: ['Pabrik', 'Produksi'],
+                            tintFrom: 'rgba(25,35,50,0.92)',
+                        },
+                        {
+                            label: 'Konstruksi',
+                            desc: 'Standar K3 proyek bangunan & infrastruktur.',
+                            image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=600&q=80',
+                            tags: ['Proyek', 'Infrastruktur'],
+                            tintFrom: 'rgba(45,40,25,0.92)',
+                        },
+                        {
+                            label: 'Pertambangan',
+                            desc: 'K3 tambang mineral, batu bara & nikel.',
+                            image: 'https://images.unsplash.com/photo-1580058572462-98e2c0e0e2f0?auto=format&fit=crop&w=600&q=80',
+                            tags: ['Mineral', 'Batu Bara'],
+                            tintFrom: 'rgba(40,35,25,0.92)',
+                        },
+                        {
+                            label: 'Maritim',
+                            desc: 'Keselamatan laut, HUET & offshore safety.',
+                            image: 'https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=600&q=80',
+                            tags: ['Perkapalan', 'Offshore'],
+                            tintFrom: 'rgba(15,30,50,0.92)',
+                        },
+                        {
+                            label: 'Perhotelan',
+                            desc: 'Pelatihan kebakaran, evakuasi & P3K hotel.',
+                            image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=600&q=80',
+                            tags: ['Pariwisata', 'Hotel'],
+                            tintFrom: 'rgba(25,35,30,0.92)',
+                        },
+                        {
+                            label: 'Kesehatan',
+                            desc: 'Sertifikasi P3K & keselamatan fasilitas medis.',
+                            image: 'https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=600&q=80',
+                            tags: ['Rumah Sakit', 'Medis'],
+                            tintFrom: 'rgba(20,35,40,0.92)',
+                        },
+                        {
+                            label: 'Pendidikan',
+                            desc: 'Kesiapsiagaan bencana & K3 lembaga akademik.',
+                            image: 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=600&q=80',
+                            tags: ['Universitas', 'Sekolah'],
+                            tintFrom: 'rgba(30,25,20,0.92)',
+                        },
                     ].map((item, i) => (
-                        <div key={i} className="bg-white border border-outline-variant rounded-2xl overflow-hidden hover:border-safety-orange hover:shadow-xl transition-all duration-300 group flex flex-col h-full">
-                            <div className="h-32 sm:h-40 overflow-hidden relative">
-                                <img src={item.image} alt={item.label} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy" />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
+                        <div
+                            key={i}
+                            className="industry-card group relative rounded-2xl overflow-hidden flex flex-col cursor-default"
+                            style={{ background: item.tintFrom }}
+                        >
+                            {/* Hero Image */}
+                            <div className="relative aspect-[4/3] overflow-hidden shrink-0">
+                                <img
+                                    src={item.image}
+                                    alt={item.label}
+                                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                    loading="lazy"
+                                />
+                                {/* Gradient fade */}
+                                <div
+                                    className="absolute inset-0"
+                                    style={{
+                                        background: `linear-gradient(to bottom, transparent 40%, ${item.tintFrom} 100%)`,
+                                    }}
+                                />
                             </div>
-                            <div className="p-5 flex flex-col items-center justify-center text-center flex-grow">
-                                <div className="w-12 h-12 rounded-full bg-surface-gray flex items-center justify-center mb-3 group-hover:bg-safety-orange/10 transition-colors duration-300">
-                                    <span className="material-symbols-outlined text-2xl text-deep-navy group-hover:text-safety-orange transition-colors duration-300">{item.icon}</span>
+
+                            {/* Content */}
+                            <div className="relative flex flex-col flex-grow px-4 sm:px-5 pb-4 sm:pb-5 -mt-3 z-10">
+                                <h3 className="font-heading font-bold text-white text-sm sm:text-base leading-snug mb-1">
+                                    {item.label}
+                                </h3>
+                                <p className="text-[11px] sm:text-xs text-white/55 leading-relaxed mb-3 line-clamp-2">
+                                    {item.desc}
+                                </p>
+                                <div className="flex flex-wrap gap-1.5 mt-auto">
+                                    {item.tags.map((tag, idx) => (
+                                        <span
+                                            key={idx}
+                                            className="text-[10px] sm:text-[11px] font-semibold text-white/65 bg-white/10 px-2.5 py-1 rounded-full border border-white/[0.08]"
+                                        >
+                                            {tag}
+                                        </span>
+                                    ))}
                                 </div>
-                                <span className="font-heading font-bold text-deep-navy text-xs sm:text-sm leading-snug">{item.label}</span>
                             </div>
                         </div>
                     ))}
@@ -440,9 +687,9 @@ export default function Home() {
             </section>
 
             {/* Alur Pelaksanaan */}
-            <section className="py-20 px-6 bg-surface-gray border-y border-outline-variant reveal">
+            <section className="py-12 md:py-20 px-6 bg-surface-gray border-y border-outline-variant reveal">
                 <div className="max-w-[1280px] mx-auto">
-                    <div className="text-center max-w-3xl mx-auto mb-16">
+                    <div className="text-center max-w-3xl mx-auto mb-8 md:mb-16">
                         <h2 className="font-heading text-2xl md:text-3xl font-bold text-deep-navy mb-3">Alur Pelaksanaan Training</h2>
                         <div className="section-divider" />
                         <p className="text-lg text-on-surface-variant">Tahapan profesional untuk memastikan pelatihan berjalan lancar dan berdaya guna.</p>
@@ -467,7 +714,7 @@ export default function Home() {
             </section>
 
             {/* Client Logos - Infinite Carousel */}
-            <section className="py-16 px-6 bg-white border-b border-outline-variant reveal">
+            <section className="py-10 md:py-16 px-6 bg-white border-b border-outline-variant reveal">
                 <div className="max-w-[1280px] mx-auto text-center">
                     <p className="text-xs font-bold text-text-secondary uppercase tracking-wider mb-8">Dipercaya oleh 500+ Perusahaan Terkemuka di Indonesia</p>
                     <div className="overflow-hidden relative py-4 -my-4">
@@ -482,9 +729,40 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* Legalitas & Sertifikasi */}
+            <section className="py-10 md:py-16 px-6 bg-surface-gray border-y border-outline-variant reveal">
+                <div className="max-w-[1280px] mx-auto">
+                    <div className="text-center max-w-3xl mx-auto mb-6 md:mb-12">
+                        <p className="text-safety-orange font-heading font-bold text-xs uppercase tracking-[0.2em] mb-2">Legalitas & Sertifikasi</p>
+                        <h2 className="font-heading text-2xl md:text-3xl font-bold text-deep-navy mb-3">Akreditasi & Izin Resmi</h2>
+                        <div className="section-divider" />
+                        <p className="text-sm text-on-surface-variant mt-3">ProSafe Indonesia adalah lembaga pelatihan K3 berlisensi resmi yang diakui secara nasional.</p>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                        {legalitasBadges.map((badge, idx) => (
+                            <div key={idx} className="bg-white border border-outline-variant hover:border-safety-orange hover:shadow-md rounded-2xl p-6 transition-all duration-300 flex flex-col items-center text-center group">
+                                <div className="w-full h-20 flex items-center justify-center mb-6 p-2 bg-surface-gray/50 rounded-xl group-hover:bg-white transition-colors duration-300">
+                                    <img 
+                                        src={badge.image} 
+                                        alt={badge.title} 
+                                        className="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300 filter drop-shadow-sm" 
+                                    />
+                                </div>
+                                <h3 className="font-heading font-bold text-base text-deep-navy mb-2">
+                                    {badge.title}
+                                </h3>
+                                <p className="text-xs text-on-surface-variant leading-relaxed">
+                                    {badge.desc}
+                                </p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* FAQ Section */}
-            <section className="py-20 px-6 max-w-[800px] mx-auto reveal">
-                <div className="text-center mb-12">
+            <section className="py-12 md:py-20 px-6 max-w-[800px] mx-auto reveal">
+                <div className="text-center mb-6 md:mb-12">
                     <h2 className="font-heading text-2xl md:text-3xl font-bold text-deep-navy mb-3">Pertanyaan Umum (FAQ)</h2>
                     <div className="section-divider" />
                     <p className="text-sm text-on-surface-variant mt-2">Menjawab hal-hal yang sering ditanyakan calon peserta.</p>
@@ -515,28 +793,60 @@ export default function Home() {
             </section>
 
             {/* Testimonials */}
-            <section className="py-20 px-6 bg-surface-gray border-t border-outline-variant max-w-[1280px] mx-auto reveal">
-                <div className="text-center mb-12">
+            <section className="py-12 md:py-20 px-6 bg-surface-gray border-t border-outline-variant max-w-[1280px] mx-auto reveal">
+                <div className="text-center mb-6 md:mb-12">
                     <h2 className="font-heading text-2xl md:text-3xl font-bold text-deep-navy mb-3">Apa Kata Klien Kami</h2>
                     <div className="section-divider" />
                     <p className="text-lg text-on-surface-variant">Testimoni dari profesional yang telah mempercayakan pelatihan K3 kepada kami.</p>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    {testimonials.map(t => (
-                        <div key={t.id} className="bg-white rounded-2xl p-6 border border-outline-variant card-hover">
-                            <div className="flex gap-1 mb-3">
-                                {Array.from({ length: t.rating }).map((_, i) => (
-                                    <span key={i} className="material-symbols-outlined icon-fill text-safety-orange text-lg">star</span>
-                                ))}
-                            </div>
-                            <p className="text-sm text-on-surface-variant leading-relaxed mb-4 italic">"{t.text}"</p>
-                            <div className="flex items-center gap-3 pt-3 border-t border-outline-variant/50">
-                                <div className="w-10 h-10 rounded-full bg-deep-navy flex items-center justify-center text-white font-heading font-bold text-sm">
-                                    {t.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
-                                </div>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    {[
+                        {
+                            ...testimonials[0],
+                            image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80'
+                        },
+                        {
+                            ...testimonials[1],
+                            image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80'
+                        },
+                        {
+                            ...testimonials[2],
+                            image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80'
+                        },
+                        {
+                            ...testimonials[3],
+                            image: 'https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=600&q=80'
+                        }
+                    ].map(t => (
+                        <div key={t.id} className="relative aspect-[3/4] rounded-2xl overflow-hidden shadow-lg group hover:shadow-xl transition-all duration-300">
+                            {/* Background Image */}
+                            <img 
+                                src={t.image} 
+                                alt={t.name} 
+                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                                loading="lazy"
+                            />
+                            {/* Overlay Gradient (Top-heavy and Bottom-heavy for text legibility) */}
+                            <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/35 to-black/90" />
+                            
+                            {/* Content */}
+                            <div className="relative z-10 h-full flex flex-col justify-between p-6 text-center text-white">
+                                {/* Top: Identity */}
                                 <div>
-                                    <p className="font-heading font-semibold text-sm text-deep-navy">{t.name}</p>
-                                    <p className="text-xs text-text-secondary">{t.role}, {t.company}</p>
+                                    <h3 className="font-heading font-bold text-base tracking-wide">{t.name}</h3>
+                                    <p className="text-[11px] text-white/70 mt-0.5">{t.role} at {t.company}</p>
+                                </div>
+                                
+                                {/* Bottom: Stars & Testimonial */}
+                                <div className="flex flex-col items-center">
+                                    <div className="flex gap-0.5 mb-2.5">
+                                        {Array.from({ length: t.rating }).map((_, i) => (
+                                            <span key={i} className="material-symbols-outlined icon-fill text-safety-orange text-sm">star</span>
+                                        ))}
+                                    </div>
+                                    <p className="text-[11px] sm:text-xs text-white/85 leading-relaxed font-light line-clamp-4">
+                                        "{t.text}"
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -544,10 +854,81 @@ export default function Home() {
                 </div>
             </section>
 
+            {/* Artikel Terbaru */}
+            <section className="py-12 md:py-20 px-6 max-w-[1280px] mx-auto reveal">
+                <div className="text-center max-w-3xl mx-auto mb-6 md:mb-12">
+                    <p className="text-safety-orange font-heading font-bold text-xs uppercase tracking-[0.2em] mb-2">Blog & Artikel</p>
+                    <h2 className="font-heading text-2xl md:text-3xl lg:text-[2.1rem] font-bold text-deep-navy mb-3">Informasi & Edukasi K3 Terbaru</h2>
+                    <div className="section-divider" />
+                    <p className="text-base text-on-surface-variant mt-3">Rekomendasi bacaan penting seputar regulasi keselamatan kerja, sertifikasi K3, dan tips keamanan industri.</p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    {blogPosts.slice(0, 3).map((post) => (
+                        <Link 
+                            key={post.id} 
+                            href={`/blog`} 
+                            className="group block bg-white rounded-2xl border border-outline-variant hover:border-deep-navy hover:shadow-lg transition-all overflow-hidden flex flex-col h-full"
+                        >
+                            <div className="relative h-52 overflow-hidden bg-slate-100 shrink-0">
+                                <img 
+                                    src={post.image} 
+                                    alt={post.title} 
+                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" 
+                                    loading="lazy"
+                                />
+                                <div className="absolute top-4 left-4 bg-safety-orange text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+                                    {post.category}
+                                </div>
+                            </div>
+                            <div className="p-6 flex flex-col flex-grow">
+                                <span className="text-xs text-text-secondary font-medium mb-2 block">{post.date} · {post.readTime}</span>
+                                <h3 className="font-heading text-base sm:text-lg font-bold text-deep-navy mb-3 group-hover:text-safety-orange transition-colors line-clamp-2">
+                                    {post.title}
+                                </h3>
+                                <p className="text-xs text-on-surface-variant leading-relaxed line-clamp-3 mb-5 flex-grow">
+                                    {post.excerpt}
+                                </p>
+                                <span className="inline-flex items-center text-safety-orange text-xs font-bold uppercase tracking-wider group-hover:translate-x-1.5 transition-transform duration-300">
+                                    Baca Selengkapnya <span className="material-symbols-outlined text-sm ml-1">arrow_forward</span>
+                                </span>
+                            </div>
+                        </Link>
+                    ))}
+                </div>
+                <div className="mt-10 text-center">
+                    <Link href="/blog" className="btn-prosafe-secondary text-sm px-8 py-3.5 shadow-sm">
+                        Kunjungi Blog ProSafe
+                    </Link>
+                </div>
+            </section>
+
+            {/* Feed Instagram */}
+            <section className="py-12 md:py-20 px-6 bg-surface-gray border-y border-outline-variant reveal">
+                <div className="max-w-[1280px] mx-auto">
+                    <div className="text-center max-w-3xl mx-auto mb-6 md:mb-12">
+                        <p className="text-safety-orange font-heading font-bold text-xs uppercase tracking-[0.2em] mb-2">Galeri Instagram</p>
+                        <h2 className="font-heading text-2xl md:text-3xl lg:text-[2.1rem] font-bold text-deep-navy mb-3">Ikuti Aktivitas Kami di Instagram</h2>
+                        <div className="section-divider" />
+                        <p className="text-base text-on-surface-variant mt-3">
+                            Temukan dokumentasi pelatihan terbaru, info kelas, serta tips K3 menarik melalui akun resmi{' '}
+                            <a 
+                                href="https://www.instagram.com/prosafe_indonesia" 
+                                target="_blank" 
+                                rel="noopener noreferrer" 
+                                className="text-safety-orange font-bold hover:underline"
+                            >
+                                @prosafe_indonesia
+                            </a>.
+                        </p>
+                    </div>
+                    <div className="elfsight-app-c11ba893-a933-4167-89ef-50d7b4f3c2b2" data-elfsight-app-lazy></div>
+                </div>
+            </section>
+
             {/* Inquiry Request Form */}
-            <section className="py-20 px-6 max-w-[800px] mx-auto reveal">
+            <section className="py-12 md:py-20 px-6 max-w-[800px] mx-auto reveal">
                 <div className="bg-white border border-outline-variant/70 rounded-2xl p-8 md:p-12 shadow-sm">
-                    <div className="text-center mb-8">
+                    <div className="text-center mb-6 md:mb-8">
                         <h2 className="font-heading text-2xl md:text-3xl font-bold text-deep-navy mb-2">Hubungi Kami & Dapatkan Penawaran</h2>
                         <p className="text-sm text-on-surface-variant">Isi data di bawah ini, tim marketing kami akan segera menghubungi Anda dengan penawaran harga terbaik.</p>
                     </div>

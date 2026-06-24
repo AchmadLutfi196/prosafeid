@@ -197,8 +197,8 @@ export default function JadwalTraining() {
                                                         <span className="w-1.5 h-1.5 rounded-full bg-alert-red animate-pulse" /> Hampir Penuh
                                                     </span>
                                                 ) : (
-                                                    <span className="inline-flex items-center gap-1.5 bg-wa-green/10 text-wa-green text-[11px] font-bold px-3 py-1 rounded-full border border-wa-green/20">
-                                                        <span className="w-1.5 h-1.5 rounded-full bg-wa-green" /> Tersedia
+                                                    <span className="inline-flex items-center gap-1.5 bg-cta/10 text-cta text-[11px] font-bold px-3 py-1 rounded-full border border-cta/20">
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-cta" /> Tersedia
                                                     </span>
                                                 )}
                                             </div>
@@ -223,8 +223,8 @@ export default function JadwalTraining() {
                                                         <span className="w-1 h-1 rounded-full bg-alert-red animate-pulse" /> Hampir Penuh
                                                     </span>
                                                 ) : (
-                                                    <span className="inline-flex items-center gap-1 bg-wa-green/10 text-wa-green text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-wa-green/20">
-                                                        <span className="w-1 h-1 rounded-full bg-wa-green" /> Tersedia
+                                                    <span className="inline-flex items-center gap-1 bg-cta/10 text-cta text-[10px] font-bold px-2.5 py-0.5 rounded-full border border-cta/20">
+                                                        <span className="w-1 h-1 rounded-full bg-cta" /> Tersedia
                                                     </span>
                                                 )}
                                             </div>

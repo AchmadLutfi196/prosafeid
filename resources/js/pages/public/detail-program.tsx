@@ -233,7 +233,7 @@ export default function DetailProgram() {
                                             </div>
                                         </div>
                                         <div className="flex items-center gap-3">
-                                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${schedule.status === 'Hampir Penuh' ? 'bg-alert-red/10 text-alert-red border border-alert-red/20' : 'bg-wa-green/10 text-wa-green border border-wa-green/20'}`}>
+                                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${schedule.status === 'Hampir Penuh' ? 'bg-alert-red/10 text-alert-red border border-alert-red/20' : 'bg-cta/10 text-cta border border-cta/20'}`}>
                                                 {schedule.status}
                                             </span>
                                             <Link href="/pendaftaran" className="btn-prosafe-primary px-4 py-2 text-xs">

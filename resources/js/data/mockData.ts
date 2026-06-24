@@ -339,6 +339,7 @@ export const teamMembers = [
         id: 1,
         name: 'Dr. Ir. Suryadi Pratama, M.K3',
         role: 'Instruktur Senior / K3 Umum',
+        image: '/images/team/suryadi.png',
         certifications: ['AK3U Kemnaker', 'Auditor SMK3', 'ISO 45001 Lead Auditor'],
         experience: '20+ tahun',
     },
@@ -346,6 +347,7 @@ export const teamMembers = [
         id: 2,
         name: 'Ir. Hendra Wijaya, ST, M.T.',
         role: 'Instruktur / K3 Konstruksi & Listrik',
+        image: '/images/team/hendra.png',
         certifications: ['AK3 Konstruksi', 'AK3 Listrik', 'POM Kemnaker'],
         experience: '15+ tahun',
     },
@@ -353,6 +355,7 @@ export const teamMembers = [
         id: 3,
         name: 'Capt. Andi Setiawan',
         role: 'Instruktur / K3 Migas & Offshore',
+        image: '/images/team/andi.png',
         certifications: ['OPITO Instructor', 'BOSIET', 'HUET', 'Fire Fighting'],
         experience: '18+ tahun',
     },
@@ -360,6 +363,7 @@ export const teamMembers = [
         id: 4,
         name: 'Dra. Ratna Sari, M.Kes.',
         role: 'Instruktur / Kesehatan Kerja & P3K',
+        image: '/images/team/ratna.png',
         certifications: ['Dokter Hiperkes', 'ACLS', 'ATLS'],
         experience: '12+ tahun',
     },
@@ -418,8 +422,8 @@ export const instagramPosts = [
 ];
 
 export const legalitasBadges = [
-    { icon: 'verified', title: 'PJK3 Kemnaker RI', desc: 'Terdaftar sebagai Perusahaan Jasa K3 resmi Kementerian Ketenagakerjaan' },
-    { icon: 'workspace_premium', title: 'LSP BNSP', desc: 'Lembaga Sertifikasi Profesi terakreditasi BNSP' },
-    { icon: 'shield_person', title: 'ISO 9001:2015', desc: 'Sistem Manajemen Mutu terstandar internasional' },
-    { icon: 'military_tech', title: 'ISO 45001:2018', desc: 'Sistem Manajemen K3 standar internasional' },
+    { image: '/images/badges/kemnaker.png', title: 'PJK3 Kemnaker RI', desc: 'Terdaftar sebagai Perusahaan Jasa K3 resmi Kementerian Ketenagakerjaan' },
+    { image: '/images/badges/bnsp.png', title: 'LSP BNSP', desc: 'Lembaga Sertifikasi Profesi terakreditasi BNSP' },
+    { image: '/images/badges/iso9001.svg', title: 'ISO 9001:2015', desc: 'Sistem Manajemen Mutu terstandar internasional' },
+    { image: '/images/badges/iso45001.svg', title: 'ISO 45001:2018', desc: 'Sistem Manajemen K3 standar internasional' },
 ];
