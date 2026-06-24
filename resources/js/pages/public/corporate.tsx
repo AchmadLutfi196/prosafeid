@@ -5,11 +5,87 @@ import BrandLogo from '@/components/public/BrandLogos';
 
 export default function Corporate() {
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [selectedIndustry, setSelectedIndustry] = useState('construction');
+    const [openFaq, setOpenFaq] = useState<number | null>(null);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         setFormSubmitted(true);
     };
+
+    const industries = [
+        {
+            id: 'construction',
+            name: 'Konstruksi',
+            icon: 'engineering',
+            headline: 'Kepatuhan Tinggi untuk Proyek Bebas Kecelakaan (Zero Accident)',
+            challenge: 'Bekerja di ketinggian, pemasangan perancah (scaffolding), dan pengoperasian alat berat memiliki risiko kecelakaan kerja tertinggi.',
+            solutions: [
+                'Sertifikasi Ahli K3 Konstruksi (Muda / Madya) Kemnaker',
+                'Pelatihan Khusus Scaffolder & Bekerja di Ketinggian (TKPK / TKBT)',
+                'Penyusunan Dokumen Safety Plan & Job Safety Analysis (JSA) Proyek'
+            ],
+            metric: '150+ Proyek BUMN & Swasta Terlatih'
+        },
+        {
+            id: 'mining',
+            name: 'Pertambangan & Energi',
+            icon: 'electric_bolt',
+            headline: 'Standardisasi Ketat untuk Lingkungan Kerja Ekstrem',
+            challenge: 'Area kerja terpencil, gas beracun, ruang terbatas, dan pengoperasian armada berat membutuhkan pengawasan keselamatan 24/7.',
+            solutions: [
+                'Pelatihan Pengawas Operasional Pertama & Madya (POP / POM)',
+                'Sertifikasi Confined Space & Gas Detector BNSP / Kemnaker',
+                'Defensive Driving Training (DDT) untuk Operator Alat & Heavy Equipment'
+            ],
+            metric: '40+ Perusahaan Tambang Terakreditasi'
+        },
+        {
+            id: 'manufacturing',
+            name: 'Manufaktur & Pabrik',
+            icon: 'precision_manufacturing',
+            headline: 'Optimasi Produktivitas Melalui Keselamatan Operasional',
+            challenge: 'Interaksi mesin-manusia, bahan kimia berbahaya, kebisingan tinggi, dan risiko kebakaran memerlukan sistem proteksi yang andal.',
+            solutions: [
+                'Sertifikasi Operator Forklift, Crane, Boiler, dan K3 Listrik',
+                'K3 Penanggulangan Kebakaran Resmi (Damkar Kelas D / C / B / A)',
+                'Pendampingan Sertifikasi Sistem Manajemen K3 (SMK3 PP 50/2012)'
+            ],
+            metric: '85+ Pabrik & Area Industri Tersertifikasi'
+        },
+        {
+            id: 'oilgas',
+            name: 'Minyak & Gas Bumi',
+            icon: 'oil_barrel',
+            headline: 'Kualifikasi Global untuk Industri High-Risk',
+            challenge: 'Kepatuhan standar internasional dan sertifikasi CSMS (Contractor Safety Management System) adalah syarat mutlak kerja sama.',
+            solutions: [
+                'Sertifikasi Ahli K3 Kimia & Petugas K3 Kimia Resmi',
+                'Penyusunan Dokumen CSMS (Contractor Safety Management System)',
+                'Sertifikasi Auditor SMK3 & Sistem Manajemen Integrasi (ISO 45001)'
+            ],
+            metric: '100% Lolos CSMS Audit Client Kami'
+        }
+    ];
+
+    const faqs = [
+        {
+            q: 'Apakah silabus in-house training bisa dikustomisasi sesuai SOP perusahaan kami?',
+            a: 'Ya, tentu. Sebelum pelaksanaan training, tim instruktur kami akan melakukan pre-assessment atau diskusi konsultatif dengan tim HSE/HRD Anda untuk menyesuaikan materi, simulasi praktis, dan studi kasus dengan SOP internal dan karakteristik risiko spesifik di perusahaan Anda.'
+        },
+        {
+            q: 'Berapa jumlah minimal peserta untuk menyelenggarakan In-House Training?',
+            a: 'Umumnya minimal peserta adalah 10 hingga 15 orang per batch untuk efisiensi biaya. Namun, kami juga melayani jumlah peserta di bawah ketentuan tersebut dengan penyesuaian penawaran khusus.'
+        },
+        {
+            q: 'Di mana lokasi pelaksanaan In-House Training?',
+            a: 'Lokasi ditentukan sepenuhnya oleh perusahaan klien (On-Site). Bisa diselenggarakan di ruang meeting kantor, pabrik/site operasional perusahaan, kelas offline di kantor cabang ProSafe, atau hotel pilihan Anda.'
+        },
+        {
+            q: 'Apakah sertifikat yang diterbitkan resmi dan diakui oleh Kementerian Ketenagakerjaan?',
+            a: 'Benar. ProSafe Indonesia adalah PJK3 resmi yang terakreditasi oleh Kemnaker RI dan Lembaga Sertifikasi Profesi (LSP) berlisensi BNSP. Sertifikat keahlian dan lisensi kewenangan (lisensi K3 / SIO) diterbitkan langsung oleh instansi berwenang.'
+        }
+    ];
 
     return (
         <>
@@ -18,7 +94,7 @@ export default function Corporate() {
             </Head>
 
             {/* Header Hero */}
-            <section className="bg-deep-navy relative overflow-hidden py-12 md:py-16">
+            <section className="bg-deep-navy relative overflow-hidden py-14 md:py-20">
                 <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, #fff 10px, #fff 11px)' }} />
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-safety-orange/10 blur-[120px] rounded-full pointer-events-none" />
                 <div className="max-w-[1280px] mx-auto px-6 relative z-10">
@@ -104,6 +180,99 @@ export default function Corporate() {
                         </div>
                     </section>
 
+                    {/* Interactive Solutions by Industry Section */}
+                    <section className="mb-20 bg-white border border-outline-variant/60 rounded-3xl p-6 sm:p-10 shadow-sm">
+                        <div className="text-center mb-10">
+                            <span className="text-xs font-bold text-safety-orange uppercase tracking-widest block mb-2">Solusi Spesifik Sektor</span>
+                            <h2 className="font-heading text-2xl md:text-3xl font-bold text-deep-navy">Kustomisasi Berdasarkan Industri</h2>
+                            <div className="section-divider mx-auto mt-3" />
+                        </div>
+
+                        {/* Tabs Selector */}
+                        <div className="flex flex-wrap justify-center gap-2 mb-8 border-b border-outline-variant pb-6">
+                            {industries.map(ind => (
+                                <button
+                                    key={ind.id}
+                                    onClick={() => setSelectedIndustry(ind.id)}
+                                    className={`flex items-center gap-2 px-5 py-3 rounded-xl font-heading font-bold text-sm transition-all duration-300 cursor-pointer ${
+                                        selectedIndustry === ind.id 
+                                            ? 'bg-deep-navy text-white shadow-md' 
+                                            : 'bg-surface-gray text-text-secondary hover:bg-outline-variant/50 hover:text-deep-navy'
+                                    }`}
+                                >
+                                    <span className="material-symbols-outlined text-lg">{ind.icon}</span>
+                                    {ind.name}
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Tabs Content */}
+                        <div className="transition-all duration-300">
+                            {industries.filter(ind => ind.id === selectedIndustry).map(ind => (
+                                <div key={ind.id} className="grid lg:grid-cols-12 gap-8 items-center">
+                                    <div className="lg:col-span-7 space-y-5">
+                                        <span className="text-xs font-bold text-safety-orange bg-safety-orange/10 px-3 py-1 rounded-full uppercase tracking-wider">
+                                            {ind.name}
+                                        </span>
+                                        <h3 className="font-heading font-bold text-xl sm:text-2xl text-deep-navy leading-tight">
+                                            {ind.headline}
+                                        </h3>
+                                        <p className="text-sm sm:text-base text-text-secondary leading-relaxed">
+                                            <strong className="text-deep-navy">Tantangan K3:</strong> {ind.challenge}
+                                        </p>
+                                        <div className="space-y-3">
+                                            <p className="text-xs font-bold uppercase text-deep-navy tracking-wider">Rekomendasi Program Utama:</p>
+                                            <ul className="space-y-2">
+                                                {ind.solutions.map((sol, index) => (
+                                                    <li key={index} className="flex items-start gap-2 text-sm text-on-surface-variant">
+                                                        <span className="material-symbols-outlined text-safety-orange text-sm shrink-0 mt-0.5">check_circle</span>
+                                                        <span>{sol}</span>
+                                                    </li>
+                                                ))}
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div className="lg:col-span-5 bg-surface-gray p-8 rounded-2xl border border-outline-variant/40 text-center space-y-4">
+                                        <span className="material-symbols-outlined text-deep-navy text-4xl block">shield</span>
+                                        <div className="font-heading text-2xl font-black text-safety-orange">{ind.metric}</div>
+                                        <p className="text-xs text-text-secondary leading-relaxed">
+                                            Kami menjamin kurikulum aplikatif dengan instruktur praktisi berpengalaman di lapangan.
+                                        </p>
+                                        <a 
+                                            href={`https://wa.me/6281222998847?text=Halo%20ProSafe%20Indonesia%20Corporate%20Services%2C%20saya%20ingin%20mengajukan%20pelatihan%20untuk%20sektor%20${ind.name}...`}
+                                            target="_blank" 
+                                            rel="noopener noreferrer" 
+                                            className="btn-prosafe-primary w-full justify-center py-3 text-sm cursor-pointer"
+                                        >
+                                            <span className="material-symbols-outlined text-sm">chat</span> Konsultasi Sektor {ind.name}
+                                        </a>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
+                    {/* Stats Metric Counter Section */}
+                    <section className="mb-20 bg-white rounded-3xl p-8 border border-outline-variant/60 shadow-sm relative overflow-hidden">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-safety-orange/5 rounded-full blur-3xl pointer-events-none" />
+                        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center divide-y lg:divide-y-0 lg:divide-x divide-outline-variant/60">
+                            {[
+                                { number: '500+', label: 'Perusahaan Korporat & BUMN', desc: 'Telah memercayakan in-house training kepada ProSafe.' },
+                                { number: '15K+', label: 'Alumni Terlatih', desc: 'Pekerja dan pengawas tersertifikasi secara nasional.' },
+                                { number: '98.4%', label: 'Tingkat Kelulusan Ujian', desc: 'Didampingi instruktur senior hingga kompeten.' },
+                                { number: '10+', label: 'Bidang Keahlian Resmi', desc: 'Kemnaker RI, BNSP, dan Akreditasi ISO Internasional.' },
+                            ].map((stat, i) => (
+                                <div key={stat.label} className={`pt-6 lg:pt-0 ${i > 0 ? 'lg:pl-6' : ''}`}>
+                                    <div className="font-heading text-3xl sm:text-4xl font-extrabold text-safety-orange mb-2">
+                                        {stat.number}
+                                    </div>
+                                    <h4 className="font-heading font-bold text-sm text-deep-navy mb-1">{stat.label}</h4>
+                                    <p className="text-xs text-text-secondary leading-relaxed">{stat.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </section>
+
                     {/* Proses Kerja Sama - Infographic step-by-step */}
                     <section className="mb-20">
                         <div className="text-center mb-12">
@@ -135,6 +304,36 @@ export default function Corporate() {
                                     </div>
                                 ))}
                             </div>
+                        </div>
+                    </section>
+
+                    {/* Interactive Collapsible FAQ Section */}
+                    <section className="mb-20 max-w-4xl mx-auto bg-white border border-outline-variant/60 rounded-3xl p-6 sm:p-10 shadow-sm">
+                        <div className="text-center mb-8">
+                            <span className="text-xs font-bold text-safety-orange uppercase tracking-widest block mb-2">FAQ Korporasi</span>
+                            <h2 className="font-heading text-2xl font-bold text-deep-navy">Pertanyaan yang Sering Diajukan</h2>
+                            <div className="section-divider mx-auto mt-2" />
+                        </div>
+
+                        <div className="divide-y divide-outline-variant">
+                            {faqs.map((faq, i) => (
+                                <div key={i} className="py-2">
+                                    <button 
+                                        onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                                        className="w-full flex justify-between items-center py-5 text-left font-heading font-bold text-deep-navy hover:text-safety-orange transition-colors duration-200 group cursor-pointer"
+                                    >
+                                        <span className="text-sm sm:text-base pr-4">{faq.q}</span>
+                                        <span className={`material-symbols-outlined text-outline group-hover:text-safety-orange transition-transform duration-300 shrink-0 ${openFaq === i ? 'rotate-180 text-safety-orange' : ''}`}>
+                                            expand_more
+                                        </span>
+                                    </button>
+                                    <div className={`overflow-hidden transition-all duration-300 ease-out ${openFaq === i ? 'max-h-[300px] pb-5 opacity-100' : 'max-h-0 opacity-0'}`}>
+                                        <p className="text-xs sm:text-sm text-text-secondary leading-relaxed">
+                                            {faq.a}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </section>
 
