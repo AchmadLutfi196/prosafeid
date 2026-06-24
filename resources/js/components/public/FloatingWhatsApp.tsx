@@ -1,7 +1,7 @@
 export default function FloatingWhatsApp() {
     return (
         <a
-            href="https://wa.me/6281234567890?text=Halo%20ProSafe%20Indonesia%2C%20saya%20ingin%20konsultasi%20mengenai%20pelatihan%20K3."
+            href="https://wa.me/6281222998847?text=Halo%20ProSafe%20Indonesia%2C%20saya%20ingin%20konsultasi%20mengenai%20pelatihan%20K3."
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat di WhatsApp"

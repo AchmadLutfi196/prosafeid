@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 export default function DetailProgram() {
     const [openSection, setOpenSection] = useState<number | null>(0);
+    const [openFaq, setOpenFaq] = useState<number | null>(null);
 
     const syllabus = [
         { title: 'Kelompok Dasar (Regulasi)', items: ['Kebijakan K3 Nasional', 'UU No. 1 Tahun 1970 tentang Keselamatan Kerja', 'Sistem Manajemen K3 (SMK3)', 'Konsep Dasar K3 dan P2K3'] },
@@ -10,9 +11,98 @@ export default function DetailProgram() {
         { title: 'Kelompok Penunjang (Praktek)', items: ['Analisis Kecelakaan Kerja', 'Praktek Kerja Lapangan (PKL)', 'Penyusunan Laporan PKL', 'Seminar Laporan PKL', 'Evaluasi / Post-Test Kemnaker RI'] },
     ];
 
+    const upcomingSchedules = [
+        { date: '6 - 18 Juli 2026', location: 'Surabaya & Online', status: 'Hampir Penuh', type: 'Blended Training' },
+        { date: '3 - 15 Agustus 2026', location: 'Jakarta & Online', status: 'Tersedia', type: 'Blended Training' },
+        { date: '7 - 19 September 2026', location: 'Surabaya & Online', status: 'Tersedia', type: 'Blended Training' },
+    ];
+
+    const faqs = [
+        { q: 'Apakah sertifikasi Ahli K3 Umum ini resmi?', a: 'Ya, sertifikasi diterbitkan langsung oleh Kementerian Ketenagakerjaan RI (Kemnaker) dengan lisensi PJK3 resmi ProSafe Indonesia.' },
+        { q: 'Berapa lama masa berlaku sertifikat & lisensi AK3U?', a: 'Sertifikat dan lisensi (SKP) berlaku selama 3 tahun dan dapat diperpanjang secara resmi melalui ProSafe Indonesia.' },
+        { q: 'Apakah program ini bisa diikuti oleh lulusan SMA/SMK?', a: 'Sesuai regulasi Kemnaker RI Permenaker No. 02/MEN/1992, persyaratan pendidikan minimal untuk skema sertifikasi Ahli K3 Umum Kemnaker RI adalah D3 / S1 semua jurusan.' },
+    ];
+
+    const relatedPrograms = [
+        { title: 'Auditor SMK3 Kemnaker RI', category: 'Kemnaker RI', icon: 'fact_check', link: '/program/auditor-smk3' },
+        { title: 'K3 Kebakaran Kelas D/C/B/A', category: 'Kemnaker RI', icon: 'fire_extinguisher', link: '/program/k3-kebakaran' },
+    ];
+
     return (
         <>
-            <Head title="Ahli K3 Umum Kemnaker RI - Detail Program" />
+            <Head title="Ahli K3 Umum Kemnaker RI │ ProSafe Indonesia">
+                <meta name="description" content="Program pelatihan dan sertifikasi Ahli K3 Umum (AK3U) Kemnaker RI. Durasi 12 hari, sertifikat resmi Kementerian Ketenagakerjaan." />
+                <meta property="og:title" content="Ahli K3 Umum Kemnaker RI │ ProSafe Indonesia" />
+                <meta property="og:description" content="Program pelatihan dan sertifikasi Ahli K3 Umum (AK3U) Kemnaker RI. Durasi 12 hari, sertifikat resmi Kementerian Ketenagakerjaan." />
+                <meta property="og:type" content="website" />
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Course",
+                        "name": "Ahli K3 Umum Kemnaker RI",
+                        "description": "Program pembinaan dan sertifikasi calon Ahli K3 Umum (AK3U) Kementerian Ketenagakerjaan RI.",
+                        "provider": {
+                            "@type": "Organization",
+                            "name": "ProSafe Indonesia",
+                            "sameAs": "https://prosafe.co.id"
+                        }
+                    })}
+                </script>
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "FAQPage",
+                        "mainEntity": faqs.map(faq => ({
+                            "@type": "Question",
+                            "name": faq.q,
+                            "acceptedAnswer": {
+                                "@type": "Answer",
+                                "text": faq.a
+                            }
+                        }))
+                    })}
+                </script>
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Product",
+                        "name": "Ahli K3 Umum Kemnaker RI",
+                        "image": "https://prosafe.co.id/images/logo-prosafe.png",
+                        "description": "Program pelatihan dan sertifikasi Ahli K3 Umum resmi Kemnaker RI.",
+                        "aggregateRating": {
+                            "@type": "AggregateRating",
+                            "ratingValue": "4.9",
+                            "reviewCount": "245"
+                        }
+                    })}
+                </script>
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "BreadcrumbList",
+                        "itemListElement": [
+                            {
+                                "@type": "ListItem",
+                                "position": 1,
+                                "name": "Home",
+                                "item": "https://prosafe.co.id/"
+                            },
+                            {
+                                "@type": "ListItem",
+                                "position": 2,
+                                "name": "Kemnaker RI",
+                                "item": "https://prosafe.co.id/pelatihan/kemnaker"
+                            },
+                            {
+                                "@type": "ListItem",
+                                "position": 3,
+                                "name": "Ahli K3 Umum",
+                                "item": "https://prosafe.co.id/program/ahli-k3-umum"
+                            }
+                        ]
+                    })}
+                </script>
+            </Head>
             <div className="max-w-[1280px] mx-auto px-6">
                 {/* Breadcrumb */}
                 <div className="flex items-center gap-2 text-sm text-text-secondary py-4 overflow-x-auto whitespace-nowrap">
@@ -32,10 +122,10 @@ export default function DetailProgram() {
                         <h1 className="font-heading text-3xl md:text-4xl font-bold text-deep-navy mb-4">Pelatihan & Sertifikasi Ahli K3 Umum</h1>
                         <p className="text-lg text-on-surface-variant mb-6 max-w-xl">Tingkatkan kompetensi dan legalitas perusahaan Anda dengan sertifikasi AK3U resmi dari Kementerian Ketenagakerjaan RI.</p>
                         <div className="flex flex-wrap gap-3">
-                            <button className="bg-safety-orange text-white font-heading font-semibold px-6 py-3 rounded-lg text-sm hover:bg-safety-orange/90 transition-all shadow-md flex items-center gap-2">
+                            <button className="btn-prosafe-primary text-sm">
                                 Lihat Jadwal <span className="material-symbols-outlined text-lg">calendar_month</span>
                             </button>
-                            <button className="border-2 border-deep-navy text-deep-navy font-heading font-semibold px-6 py-3 rounded-lg text-sm hover:bg-surface-container transition-colors flex items-center gap-2">
+                            <button className="btn-prosafe-secondary text-sm">
                                 Download Silabus <span className="material-symbols-outlined text-lg">download</span>
                             </button>
                         </div>
@@ -124,6 +214,78 @@ export default function DetailProgram() {
                                 <p className="text-sm opacity-90">Sertifikasi ini diselenggarakan resmi berdasarkan UU No. 1/1970 tentang Keselamatan Kerja dan Permenaker No. 02/MEN/1992.</p>
                             </div>
                         </section>
+
+                        {/* Jadwal Terdekat */}
+                        <section>
+                            <h2 className="font-heading text-xl md:text-2xl font-bold text-deep-navy mb-4 flex items-center gap-3">
+                                <span className="w-1.5 h-7 bg-safety-orange rounded-full" /> Jadwal Terdekat
+                            </h2>
+                            <div className="bg-white border border-outline-variant/60 rounded-xl overflow-hidden shadow-sm divide-y divide-outline-variant">
+                                {upcomingSchedules.map((schedule, idx) => (
+                                    <div key={idx} className="flex flex-wrap items-center justify-between p-4 gap-4">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-10 h-10 rounded-full bg-safety-orange/10 flex items-center justify-center text-safety-orange shrink-0">
+                                                <span className="material-symbols-outlined">calendar_month</span>
+                                            </div>
+                                            <div>
+                                                <p className="font-heading font-bold text-deep-navy text-sm">{schedule.date}</p>
+                                                <p className="text-xs text-text-secondary">{schedule.location} &bull; {schedule.type}</p>
+                                            </div>
+                                        </div>
+                                        <div className="flex items-center gap-3">
+                                            <span className={`text-[10px] font-bold px-2 py-0.5 rounded ${schedule.status === 'Hampir Penuh' ? 'bg-alert-red/10 text-alert-red border border-alert-red/20' : 'bg-wa-green/10 text-wa-green border border-wa-green/20'}`}>
+                                                {schedule.status}
+                                            </span>
+                                            <Link href="/pendaftaran" className="btn-prosafe-primary px-4 py-2 text-xs">
+                                                Daftar
+                                            </Link>
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* FAQ Section */}
+                        <section>
+                            <h2 className="font-heading text-xl md:text-2xl font-bold text-deep-navy mb-4 flex items-center gap-3">
+                                <span className="w-1.5 h-7 bg-safety-orange rounded-full" /> FAQ Program
+                            </h2>
+                            <div className="border border-outline-variant rounded-xl divide-y divide-outline-variant overflow-hidden">
+                                {faqs.map((faq, idx) => (
+                                    <div key={idx}>
+                                        <button onClick={() => setOpenFaq(openFaq === idx ? null : idx)} className="flex justify-between items-center w-full font-heading font-semibold text-deep-navy p-4 hover:bg-surface-container-low transition-colors text-left text-sm md:text-base">
+                                            {faq.q}
+                                            <span className={`material-symbols-outlined transition-transform ${openFaq === idx ? 'rotate-180' : ''}`}>expand_more</span>
+                                        </button>
+                                        {openFaq === idx && (
+                                            <div className="p-4 bg-surface-gray border-t border-outline-variant">
+                                                <p className="text-sm text-on-surface-variant leading-relaxed">{faq.a}</p>
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                        </section>
+
+                        {/* Program Terkait */}
+                        <section className="pb-8">
+                            <h2 className="font-heading text-xl md:text-2xl font-bold text-deep-navy mb-4 flex items-center gap-3">
+                                <span className="w-1.5 h-7 bg-safety-orange rounded-full" /> Program Terkait
+                            </h2>
+                            <div className="grid md:grid-cols-2 gap-4">
+                                {relatedPrograms.map((rp, idx) => (
+                                    <Link key={idx} href={rp.link} className="flex items-center gap-4 bg-white rounded-xl p-4 border border-outline-variant/60 hover:border-safety-orange/40 hover:shadow-md transition-all group">
+                                        <div className="w-12 h-12 rounded-xl bg-surface-gray flex items-center justify-center shrink-0 group-hover:bg-safety-orange/10 group-hover:text-safety-orange transition-colors">
+                                            <span className="material-symbols-outlined text-deep-navy group-hover:text-safety-orange text-2xl">{rp.icon}</span>
+                                        </div>
+                                        <div>
+                                            <span className="text-[10px] font-bold text-safety-orange uppercase tracking-wider">{rp.category}</span>
+                                            <h4 className="font-heading font-bold text-deep-navy group-hover:text-safety-orange transition-colors text-sm md:text-base leading-tight mt-0.5">{rp.title}</h4>
+                                        </div>
+                                    </Link>
+                                ))}
+                            </div>
+                        </section>
                     </div>
 
                     {/* Sidebar */}
@@ -151,12 +313,12 @@ export default function DetailProgram() {
                             <div className="bg-surface-gray p-3 rounded-lg border border-outline-variant mb-5 text-xs text-text-secondary text-center">
                                 *Persyaratan: Ijazah min. D3, Pas Foto, Surat Sehat, Surat Utusan Perusahaan.
                             </div>
-                            <button className="w-full bg-safety-orange text-white font-heading font-semibold py-4 rounded-lg hover:bg-safety-orange/90 transition-all shadow-md flex items-center justify-center gap-2">
+                             <Link href="/pendaftaran" className="btn-prosafe-primary w-full justify-center py-4 text-base">
                                 Daftar Sekarang <span className="material-symbols-outlined">arrow_forward</span>
-                            </button>
-                            <a href="https://wa.me/6281234567890" className="block text-center w-full mt-3 text-deep-navy text-sm font-bold hover:underline flex items-center justify-center gap-1">
+                             </Link>
+                             <a href="https://wa.me/6281222998847" className="btn-prosafe-secondary block w-full text-center text-sm mt-3">
                                 <span className="material-symbols-outlined text-sm">chat</span> Konsultasi via WhatsApp
-                            </a>
+                             </a>
                         </div>
                     </div>
                 </div>

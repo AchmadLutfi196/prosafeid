@@ -17,7 +17,7 @@ export default function Footer() {
                         </p>
                         <div className="flex items-center gap-3">
                             {['public', 'photo_camera', 'play_circle', 'link'].map((icon, i) => (
-                                <a key={i} href="#" className="w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-text-secondary hover:bg-deep-navy hover:text-white transition-all">
+                                <a key={i} href="#" className="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-text-secondary hover:bg-deep-navy hover:text-white active:scale-90 transition-all">
                                     <span className="material-symbols-outlined text-lg">{icon}</span>
                                 </a>
                             ))}
@@ -77,15 +77,15 @@ export default function Footer() {
                             </li>
                             <li className="flex items-center gap-2">
                                 <span className="material-symbols-outlined text-text-secondary text-lg">mail</span>
-                                <a href="mailto:info@prosafe.co.id" className="text-sm text-on-surface-variant hover:text-safety-orange transition-colors">info@prosafe.co.id</a>
+                                <a href="mailto:prosafeindonesia@gmail.com" className="text-sm text-on-surface-variant hover:text-safety-orange transition-colors">prosafeindonesia@gmail.com</a>
                             </li>
                             <li className="flex items-center gap-2">
                                 <span className="material-symbols-outlined text-text-secondary text-lg">call</span>
-                                <a href="tel:+62315551234" className="text-sm text-on-surface-variant hover:text-safety-orange transition-colors">+62 31 555 1234</a>
+                                <a href="tel:+6281222998847" className="text-sm text-on-surface-variant hover:text-safety-orange transition-colors">+62 812-2299-8847</a>
                             </li>
                             <li className="flex items-center gap-2">
                                 <span className="material-symbols-outlined text-text-secondary text-lg">chat</span>
-                                <a href="https://wa.me/6281234567890" className="text-sm text-on-surface-variant hover:text-safety-orange transition-colors">WhatsApp: 0812-3456-7890</a>
+                                <a href="https://wa.me/6281222998847" className="text-sm text-on-surface-variant hover:text-safety-orange transition-colors">WhatsApp: 0812-2299-8847</a>
                             </li>
                         </ul>
 
@@ -93,9 +93,9 @@ export default function Footer() {
                         <div className="mt-6">
                             <h5 className="font-heading text-xs font-bold text-deep-navy mb-3 uppercase tracking-wider">Cabang Kami</h5>
                             <div className="flex flex-wrap gap-2">
-                                {['Surabaya', 'Jakarta', 'Semarang', 'Balikpapan'].map(city => (
-                                    <Link key={city} href="/cabang" className="text-xs px-3 py-1 rounded-full border border-outline-variant text-text-secondary hover:border-deep-navy hover:text-deep-navy transition-colors">
-                                        {city}
+                                {[{name: 'Surabaya', id: 'surabaya'}, {name: 'Jakarta', id: 'jakarta'}, {name: 'Semarang', id: 'semarang'}, {name: 'Balikpapan', id: 'balikpapan'}].map(city => (
+                                    <Link key={city.id} href={`/cabang/${city.id}`} className="text-xs px-3 py-1.5 rounded-full border border-outline-variant text-text-secondary hover:border-safety-orange hover:text-safety-orange hover:bg-safety-orange/5 active:scale-95 transition-all">
+                                        {city.name}
                                     </Link>
                                 ))}
                             </div>
@@ -110,7 +110,7 @@ export default function Footer() {
                     <div className="flex flex-wrap items-center justify-center gap-6 text-text-secondary">
                         <span className="text-xs font-bold uppercase tracking-wider">Terakreditasi:</span>
                         {['PJK3 Kemnaker RI', 'BNSP', 'ISO 9001:2015'].map(badge => (
-                            <div key={badge} className="flex items-center gap-1.5 text-xs font-semibold text-deep-navy bg-surface-container-low px-3 py-1.5 rounded-full border border-outline-variant">
+                            <div key={badge} className="flex items-center gap-1.5 text-xs font-semibold text-deep-navy bg-surface-container-low px-3 py-1.5 rounded-full border border-outline-variant badge-trust">
                                 <span className="material-symbols-outlined icon-fill text-safety-orange text-sm">verified</span>
                                 {badge}
                             </div>
@@ -124,9 +124,9 @@ export default function Footer() {
                 <div className="max-w-[1280px] mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-text-secondary">
                     <p>© 2026 ProSafe Indonesia. All rights reserved.</p>
                     <div className="flex gap-4">
-                        <a href="#" className="hover:text-deep-navy transition-colors">Kebijakan Privasi</a>
-                        <a href="#" className="hover:text-deep-navy transition-colors">Syarat & Ketentuan</a>
-                        <a href="#" className="hover:text-deep-navy transition-colors">Sitemap</a>
+                        <Link href="/kebijakan-privasi" className="hover:text-deep-navy transition-colors">Kebijakan Privasi</Link>
+                        <Link href="/syarat-ketentuan" className="hover:text-deep-navy transition-colors">Syarat & Ketentuan</Link>
+                        <Link href="/cabang" className="hover:text-deep-navy transition-colors">Cabang Kami</Link>
                     </div>
                 </div>
             </div>

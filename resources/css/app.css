@@ -7,14 +7,14 @@
 @custom-variant dark (&:is(.dark *));
 
 /* Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap');
 
 /* Material Symbols */
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 
 @theme {
-    --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
-    --font-heading: 'Montserrat', ui-sans-serif, system-ui, sans-serif;
+    --font-sans: 'Open Sans', ui-sans-serif, system-ui, sans-serif;
+    --font-heading: 'Poppins', ui-sans-serif, system-ui, sans-serif;
 
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
@@ -169,7 +169,38 @@
     font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
 }
 
-/* Custom animations */
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max: Global Interaction Standards
+   ═══════════════════════════════════════════════════ */
+
+/* Cursor pointer on all clickable elements */
+a, button, [role="button"], input[type="submit"],
+input[type="button"], .cursor-pointer, summary,
+[onclick], label[for] {
+    cursor: pointer;
+}
+
+/* Focus-visible states for keyboard navigation (WCAG AA) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible {
+    outline: 2px solid var(--color-safety-orange);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+/* Smooth default transitions on interactive elements */
+a, button, [role="button"] {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max: Custom Animations
+   ═══════════════════════════════════════════════════ */
+
 @keyframes float {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-10px); }
@@ -190,6 +221,11 @@
     to { transform: translateY(0); opacity: 1; }
 }
 
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
 .animate-float {
     animation: float 3s ease-in-out infinite;
 }
@@ -198,11 +234,15 @@
     animation: fade-in-up 0.6s ease-out forwards;
 }
 
-/* Scroll-driven reveal */
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max: Scroll-Driven Reveal
+   ═══════════════════════════════════════════════════ */
+
 .reveal {
     opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(24px);
+    transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1),
+                transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .reveal.visible {
@@ -210,26 +250,128 @@
     transform: translateY(0);
 }
 
-/* Mega menu */
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max: Link Hover Micro-Animations
+   ═══════════════════════════════════════════════════ */
+
+/* Arrow slide animation on "Lihat →" type links */
+.arrow-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.arrow-link .material-symbols-outlined {
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.arrow-link:hover .material-symbols-outlined {
+    transform: translateX(4px);
+}
+
+/* Underline slide-in effect for text links */
+.link-underline {
+    position: relative;
+    display: inline-block;
+}
+
+.link-underline::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-safety-orange);
+    transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.link-underline:hover::after {
+    width: 100%;
+}
+
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max: Card Interaction Patterns
+   ═══════════════════════════════════════════════════ */
+
+/* Premium card lift hover effect */
+.card-hover {
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(0, 31, 63, 0.08),
+                0 4px 12px rgba(0, 31, 63, 0.04);
+}
+
+/* Service card — equal height with flex */
+.service-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.service-card > *:last-child {
+    margin-top: auto;
+}
+
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max: Mega Menu
+   ═══════════════════════════════════════════════════ */
+
 .mega-menu-trigger:hover .mega-menu-panel {
     display: grid;
     opacity: 1;
     pointer-events: auto;
 }
 
-/* Logo grayscale hover */
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max: Logo Grayscale & Marquee
+   ═══════════════════════════════════════════════════ */
+
 .logo-grayscale {
-    filter: grayscale(100%);
-    opacity: 0.6;
-    transition: all 0.3s ease;
+    filter: grayscale(100%) contrast(90%);
+    opacity: 0.5;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    will-change: transform, filter, opacity;
+    transition: 
+        filter 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+        opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
+        transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+        border-color 0.5s cubic-bezier(0.25, 1, 0.5, 1),
+        box-shadow 0.5s cubic-bezier(0.25, 1, 0.5, 1);
 }
 .logo-grayscale:hover {
-    filter: grayscale(0%);
+    filter: grayscale(0%) contrast(100%);
     opacity: 1;
-    transform: scale(1.05);
+    transform: scale(1.06) translateY(-4px) translateZ(0);
+    border-color: rgba(234, 88, 12, 0.25);
+    box-shadow: 0 12px 20px -8px rgba(234, 88, 12, 0.08), 0 4px 6px -4px rgba(0, 0, 0, 0.05);
 }
 
-/* Custom scrollbar */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.logo-marquee {
+    animation: marquee 30s linear infinite;
+    width: max-content;
+}
+
+.logo-marquee:hover {
+    animation-play-state: paused;
+}
+
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max: Custom Scrollbar
+   ═══════════════════════════════════════════════════ */
+
 .custom-scrollbar::-webkit-scrollbar {
     width: 6px;
     height: 6px;
@@ -245,3 +387,190 @@
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
     background: #74777f;
 }
+
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max: Accessibility — Reduced Motion
+   ═══════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+
+    .logo-marquee {
+        animation: none;
+    }
+}
+
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max: Selection & Text Quality
+   ═══════════════════════════════════════════════════ */
+
+::selection {
+    background: rgba(255, 133, 27, 0.2);
+    color: var(--color-deep-navy);
+}
+
+/* Smooth font rendering */
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max v2: MASTER.md Shadow Depth System
+   ═══════════════════════════════════════════════════ */
+
+:root {
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07), 0 1px 3px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04);
+    --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.1), 0 8px 10px rgba(0, 0, 0, 0.04);
+}
+
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max v2: Trust & Authority — Badge Hover
+   ═══════════════════════════════════════════════════ */
+
+.badge-trust {
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 0.25s cubic-bezier(0.4, 0, 0.2, 1),
+                border-color 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.badge-trust:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0, 31, 63, 0.1);
+    border-color: var(--color-safety-orange);
+}
+
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max v2: Stat Counter — Pulse Reveal
+   ═══════════════════════════════════════════════════ */
+
+@keyframes stat-reveal {
+    0% { opacity: 0; transform: translateY(12px) scale(0.95); }
+    60% { opacity: 1; transform: translateY(-2px) scale(1.02); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.stat-counter {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: default;
+}
+
+.stat-counter:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+}
+
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max v2: Input Focus — Primary Color Ring
+   ═══════════════════════════════════════════════════ */
+
+.input-prosafe {
+    padding: 12px 16px;
+    border: 1px solid var(--color-outline-variant);
+    border-radius: 12px;
+    font-size: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    background: white;
+}
+
+.input-prosafe:focus {
+    border-color: var(--color-safety-orange);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(255, 133, 27, 0.15);
+}
+
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max v2: Button System (MASTER.md specs)
+   ═══════════════════════════════════════════════════ */
+
+.btn-prosafe-primary {
+    background: var(--color-safety-orange);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-family: var(--font-heading);
+    font-size: 15px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 8px rgba(255, 133, 27, 0.25);
+}
+
+.btn-prosafe-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(255, 133, 27, 0.35);
+    filter: brightness(1.05);
+}
+
+.btn-prosafe-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-prosafe-secondary {
+    background: transparent;
+    color: var(--color-deep-navy);
+    border: 2px solid var(--color-deep-navy);
+    padding: 12px 28px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-family: var(--font-heading);
+    font-size: 15px;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btn-prosafe-secondary:hover {
+    background: var(--color-deep-navy);
+    color: white;
+    transform: translateY(-1px);
+}
+
+.btn-prosafe-secondary:active {
+    transform: scale(0.98);
+}
+
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max v2: Section Divider
+   ═══════════════════════════════════════════════════ */
+
+.section-divider {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-safety-orange), var(--color-deep-navy));
+    border-radius: 4px;
+    margin: 0 auto 1.5rem;
+}
+
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max v2: Gradient Text
+   ═══════════════════════════════════════════════════ */
+
+.gradient-text {
+    background: linear-gradient(135deg, var(--color-safety-orange), #ff6b35);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+

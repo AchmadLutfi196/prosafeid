@@ -1,28 +1,50 @@
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { useState } from 'react';
 
 export default function Navbar() {
+    const { url } = usePage();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [megaMenuOpen, setMegaMenuOpen] = useState(false);
+
+    // Helper to check if a route is active
+    const isActive = (href: string) => {
+        if (href === '/') return url === '/';
+        // For /pelatihan, matches /pelatihan/kemnaker etc.
+        return url.startsWith(href);
+    };
 
     return (
         <>
             {/* Top Bar */}
-            <div className="hidden lg:block fixed top-0 w-full z-50 bg-deep-navy text-white/80 text-xs">
-                <div className="max-w-[1280px] mx-auto px-6 py-1.5 flex justify-between items-center">
-                    <div className="flex items-center gap-4">
-                        <span className="flex items-center gap-1"><span className="material-symbols-outlined text-xs">call</span> +62 31 555 1234</span>
-                        <span className="flex items-center gap-1"><span className="material-symbols-outlined text-xs">mail</span> info@prosafe.co.id</span>
+            <div className="hidden lg:block w-full z-50 bg-deep-navy text-white/90 text-[13px]">
+                <div className="max-w-[1280px] mx-auto px-6 py-2.5 flex justify-between items-center">
+                    <div className="flex items-center gap-5">
+                        <a href="tel:+6281222998847" className="flex items-center gap-1.5 hover:text-safety-orange transition-colors">
+                            <span className="material-symbols-outlined icon-fill text-safety-orange" style={{ fontSize: '15px' }}>call</span>
+                            <span>+62 812-2299-8847</span>
+                        </a>
+                        <span className="w-px h-3.5 bg-white/20" />
+                        <a href="mailto:prosafeindonesia@gmail.com" className="flex items-center gap-1.5 hover:text-safety-orange transition-colors">
+                            <span className="material-symbols-outlined icon-fill text-safety-orange" style={{ fontSize: '15px' }}>mail</span>
+                            <span>prosafeindonesia@gmail.com</span>
+                        </a>
                     </div>
-                    <div className="flex items-center gap-4">
-                        <span className="flex items-center gap-1"><span className="material-symbols-outlined text-xs">schedule</span> Senin-Jumat 08:00 - 17:00 WIB</span>
-                        <Link href="/cek-sertifikat" className="hover:text-safety-orange transition-colors">Cek Sertifikat</Link>
+                    <div className="flex items-center gap-5">
+                        <span className="flex items-center gap-1.5">
+                            <span className="material-symbols-outlined icon-fill text-safety-orange" style={{ fontSize: '15px' }}>schedule</span>
+                            <span>Senin – Jumat, 08:00 – 17:00 WIB</span>
+                        </span>
+                        <span className="w-px h-3.5 bg-white/20" />
+                        <Link href="/cek-sertifikat" className={`flex items-center gap-1.5 font-semibold transition-colors ${isActive('/cek-sertifikat') ? 'text-safety-orange' : 'hover:text-safety-orange'}`}>
+                            <span className="material-symbols-outlined icon-fill" style={{ fontSize: '15px' }}>verified</span>
+                            Cek Sertifikat
+                        </Link>
                     </div>
                 </div>
             </div>
 
             {/* Main Header */}
-            <header className="fixed top-0 lg:top-7 w-full z-50 bg-white border-b border-outline-variant/60 shadow-sm">
+            <header className="sticky top-0 w-full z-50 bg-white border-b border-outline-variant/60 shadow-sm">
                 <div className="max-w-[1280px] mx-auto flex items-center justify-between px-6 h-16">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2.5 shrink-0">
@@ -41,7 +63,7 @@ export default function Navbar() {
                             onMouseEnter={() => setMegaMenuOpen(true)}
                             onMouseLeave={() => setMegaMenuOpen(false)}
                         >
-                            <button className="flex items-center gap-1 px-3 py-2 text-sm font-heading font-semibold text-on-surface-variant hover:text-deep-navy hover:bg-surface-gray rounded-md transition-colors">
+                            <button className={`flex items-center gap-1 px-3 py-2 text-sm font-heading font-semibold rounded-md transition-colors ${url.startsWith('/pelatihan') ? 'text-safety-orange bg-surface-gray' : 'text-on-surface-variant hover:text-deep-navy hover:bg-surface-gray'}`}>
                                 Pelatihan K3
                                 <span className={`material-symbols-outlined transition-transform duration-200 ${megaMenuOpen ? 'rotate-180' : ''}`} style={{ fontSize: '18px' }}>expand_more</span>
                             </button>
@@ -58,8 +80,8 @@ export default function Navbar() {
                                             { href: '/pelatihan/non-sertifikasi', icon: 'menu_book', label: 'Non-Sertifikasi' },
                                         ].map(item => (
                                             <li key={item.href}>
-                                                <Link href={item.href} className="flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm text-on-surface hover:bg-surface-gray hover:text-safety-orange transition-colors group">
-                                                    <span className="material-symbols-outlined text-deep-navy group-hover:text-safety-orange transition-colors" style={{ fontSize: '20px' }}>{item.icon}</span>
+                                                <Link href={item.href} className={`flex items-center gap-2.5 px-2.5 py-2 rounded-md text-sm text-on-surface hover:bg-surface-gray hover:text-safety-orange transition-colors group ${isActive(item.href) ? 'text-safety-orange bg-surface-gray' : ''}`}>
+                                                    <span className={`material-symbols-outlined text-deep-navy group-hover:text-safety-orange transition-colors ${isActive(item.href) ? 'text-safety-orange' : ''}`} style={{ fontSize: '20px' }}>{item.icon}</span>
                                                     {item.label}
                                                 </Link>
                                             </li>
@@ -95,10 +117,11 @@ export default function Navbar() {
                             { href: '/jadwal', label: 'Jadwal' },
                             { href: '/corporate', label: 'Corporate' },
                             { href: '/tentang-kami', label: 'Tentang Kami' },
+                            { href: '/cabang', label: 'Cabang' },
                             { href: '/blog', label: 'Blog' },
                             { href: '/kontak', label: 'Kontak' },
                         ].map(item => (
-                            <Link key={item.href} href={item.href} className="px-3 py-2 text-sm font-heading font-semibold text-on-surface-variant hover:text-deep-navy hover:bg-surface-gray rounded-md transition-colors whitespace-nowrap">
+                            <Link key={item.href} href={item.href} className={`px-3 py-2 text-sm font-heading font-semibold rounded-md transition-colors whitespace-nowrap ${isActive(item.href) ? 'text-safety-orange bg-surface-gray' : 'text-on-surface-variant hover:text-deep-navy hover:bg-surface-gray'}`}>
                                 {item.label}
                             </Link>
                         ))}
@@ -106,17 +129,17 @@ export default function Navbar() {
 
                     {/* Desktop CTA + Search */}
                     <div className="hidden lg:flex items-center gap-2 ml-auto">
-                        <div className="flex items-center border border-outline-variant rounded-full px-3 py-1.5 bg-surface-gray/60 hover:bg-surface-gray transition-colors">
-                            <span className="material-symbols-outlined text-text-secondary mr-1.5" style={{ fontSize: '18px' }}>search</span>
-                            <input className="bg-transparent border-none focus:ring-0 text-sm w-24 outline-none placeholder:text-text-secondary/70" placeholder="Cari..." type="text" />
+                        <div className="flex items-center border border-outline-variant rounded-full px-3 py-1.5 bg-surface-gray/60 focus-within:ring-2 focus-within:ring-safety-orange/20 focus-within:border-safety-orange transition-all duration-200">
+                            <span className="material-symbols-outlined text-text-secondary mr-1.5 select-none" style={{ fontSize: '18px' }}>search</span>
+                            <input type="search" name="q" autoComplete="off" aria-label="Cari Pelatihan" className="bg-transparent border-none focus:ring-0 text-sm w-24 focus:w-36 transition-all duration-300 outline-none placeholder:text-text-secondary/70" placeholder="Cari..." />
                         </div>
-                        <Link href="/kontak" className="bg-safety-orange text-white font-heading text-sm font-semibold px-5 py-2 rounded-lg hover:bg-safety-orange/90 transition-all shadow-sm hover:shadow-md whitespace-nowrap">
+                        <Link href="/kontak" className="btn-prosafe-primary text-sm px-5 py-2.5 whitespace-nowrap">
                             Konsultasi Gratis
                         </Link>
                     </div>
 
                     {/* Mobile Menu Button */}
-                    <button className="lg:hidden text-deep-navy p-1" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
+                    <button className="lg:hidden text-deep-navy p-1 flex items-center justify-center rounded-md hover:bg-surface-gray transition-colors active:scale-95" onClick={() => setMobileMenuOpen(!mobileMenuOpen)} aria-label="Menu Utama">
                         <span className="material-symbols-outlined" style={{ fontSize: '26px' }}>{mobileMenuOpen ? 'close' : 'menu'}</span>
                     </button>
                 </div>
@@ -127,21 +150,27 @@ export default function Navbar() {
                 <div className="fixed inset-0 z-40 bg-white pt-16 overflow-y-auto lg:hidden">
                     <nav className="flex flex-col p-5 gap-0.5">
                         {[
-                            { href: '/', label: 'Beranda', active: true },
-                            { href: '/pelatihan/kemnaker', label: 'Pelatihan K3' },
-                            { href: '/jadwal', label: 'Jadwal Training' },
-                            { href: '/corporate', label: 'Corporate' },
-                            { href: '/tentang-kami', label: 'Tentang Kami' },
-                            { href: '/blog', label: 'Blog' },
-                            { href: '/galeri', label: 'Galeri' },
-                            { href: '/kontak', label: 'Kontak' },
+                            { href: '/', label: 'Beranda', icon: 'home' },
+                            { href: '/pelatihan/kemnaker', label: 'Pelatihan K3', icon: 'engineering' },
+                            { href: '/jadwal', label: 'Jadwal Training', icon: 'calendar_month' },
+                            { href: '/corporate', label: 'Corporate', icon: 'business' },
+                            { href: '/tentang-kami', label: 'Tentang Kami', icon: 'info' },
+                            { href: '/cabang', label: 'Cabang Kami', icon: 'location_on' },
+                            { href: '/blog', label: 'Blog & Artikel', icon: 'article' },
+                            { href: '/galeri', label: 'Galeri', icon: 'photo_library' },
+                            { href: '/testimoni', label: 'Testimoni', icon: 'reviews' },
+                            { href: '/karir', label: 'Karir', icon: 'work' },
+                            { href: '/cek-sertifikat', label: 'Cek Sertifikat', icon: 'verified' },
+                            { href: '/kontak', label: 'Kontak', icon: 'call' },
                         ].map(item => (
-                            <Link key={item.href} href={item.href} onClick={() => setMobileMenuOpen(false)} className={`font-heading font-semibold text-base py-3 px-4 rounded-lg transition-colors ${item.active ? 'text-deep-navy bg-surface-gray' : 'text-on-surface-variant hover:bg-surface-gray'}`}>
+                            <Link key={item.href} href={item.href} onClick={() => setMobileMenuOpen(false)} className={`font-heading font-semibold text-base py-3 px-4 rounded-lg transition-colors flex items-center gap-3 ${isActive(item.href) ? 'text-safety-orange bg-surface-gray' : 'text-on-surface-variant hover:bg-surface-gray'}`}>
+                                <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>{item.icon}</span>
                                 {item.label}
                             </Link>
                         ))}
+
                         <div className="mt-4 pt-4 border-t border-outline-variant">
-                            <Link href="/kontak" onClick={() => setMobileMenuOpen(false)} className="block w-full bg-safety-orange text-white font-heading text-base font-bold py-3.5 rounded-lg text-center shadow-sm">
+                            <Link href="/kontak" onClick={() => setMobileMenuOpen(false)} className="btn-prosafe-primary w-full justify-center text-base py-3.5">
                                 Konsultasi Gratis
                             </Link>
                         </div>
@@ -152,17 +181,20 @@ export default function Navbar() {
             {/* Mobile Bottom Navigation */}
             <nav className="lg:hidden fixed bottom-0 w-full z-40 bg-white border-t border-outline-variant/60 pb-safe flex justify-around items-center py-1.5 shadow-[0_-2px_10px_rgba(0,0,0,0.06)]">
                 {[
-                    { href: '/', icon: 'home', label: 'Home', active: true },
-                    { href: '/pelatihan/kemnaker', icon: 'engineering', label: 'Pelatihan', active: false },
-                    { href: '/jadwal', icon: 'calendar_month', label: 'Jadwal', active: false },
-                    { href: '/corporate', icon: 'business', label: 'Corporate', active: false },
-                    { href: '/kontak', icon: 'support_agent', label: 'Kontak', active: false },
-                ].map(item => (
-                    <Link key={item.href} href={item.href} className={`flex flex-col items-center ${item.active ? 'text-safety-orange' : 'text-text-secondary'}`}>
-                        <span className={`material-symbols-outlined ${item.active ? 'icon-fill' : ''}`} style={{ fontSize: '22px' }}>{item.icon}</span>
-                        <span className="text-[10px] font-semibold mt-0.5">{item.label}</span>
-                    </Link>
-                ))}
+                    { href: '/', icon: 'home', label: 'Home' },
+                    { href: '/pelatihan/kemnaker', icon: 'engineering', label: 'Pelatihan' },
+                    { href: '/jadwal', icon: 'calendar_month', label: 'Jadwal' },
+                    { href: '/corporate', icon: 'business', label: 'Corporate' },
+                    { href: '/kontak', icon: 'support_agent', label: 'Kontak' },
+                ].map(item => {
+                    const active = isActive(item.href);
+                    return (
+                        <Link key={item.href} href={item.href} className={`flex flex-col items-center ${active ? 'text-safety-orange' : 'text-text-secondary'}`}>
+                            <span className={`material-symbols-outlined ${active ? 'icon-fill' : ''}`} style={{ fontSize: '22px' }}>{item.icon}</span>
+                            <span className="text-[10px] font-semibold mt-0.5">{item.label}</span>
+                        </Link>
+                    );
+                })}
             </nav>
         </>
     );

@@ -4,11 +4,27 @@ import { teamMembers } from '@/data/mockData';
 export default function TentangKami() {
     return (
         <>
-            <Head title="Tentang Kami - ProSafe Indonesia" />
+            <Head title="Tentang Kami │ ProSafe Indonesia">
+                <meta name="description" content="ProSafe Indonesia adalah lembaga pelatihan dan sertifikasi K3 terpercaya. Terakreditasi PJK3 Kemnaker RI, LSP BNSP, dan ISO 9001:2015." />
+                <meta property="og:title" content="Tentang Kami │ ProSafe Indonesia" />
+                <meta property="og:description" content="ProSafe Indonesia adalah lembaga pelatihan dan sertifikasi K3 terpercaya. Terakreditasi PJK3 Kemnaker RI, LSP BNSP, dan ISO 9001:2015." />
+                <meta property="og:type" content="website" />
+                <script type="application/ld+json">
+                    {JSON.stringify({
+                        "@context": "https://schema.org",
+                        "@type": "Organization",
+                        "name": "ProSafe Indonesia",
+                        "url": "https://prosafe.co.id/tentang-kami",
+                        "logo": "https://prosafe.co.id/images/logo-prosafe.png",
+                        "description": "Lembaga pelatihan dan sertifikasi K3 nasional terakreditasi Kemnaker RI dan BNSP.",
+                        "foundingDate": "2015"
+                    })}
+                </script>
+            </Head>
             {/* Hero */}
             <section className="bg-deep-navy relative overflow-hidden">
                 <div className="absolute inset-0 opacity-5" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 10px, #fff 10px, #fff 11px)' }} />
-                <div className="max-w-[1280px] mx-auto px-6 py-16 relative z-10 text-center">
+                <div className="max-w-[1280px] mx-auto px-6 py-10 md:py-14 relative z-10 text-center">
                     <h1 className="font-heading text-3xl md:text-5xl font-bold text-white mb-4">Tentang ProSafe Indonesia</h1>
                     <p className="text-lg text-primary-fixed-dim max-w-2xl mx-auto">Mitra K3 Terpercaya untuk Industri Indonesia sejak 2015.</p>
                 </div>
@@ -23,7 +39,7 @@ export default function TentangKami() {
                         <p className="text-on-surface-variant leading-relaxed mb-6">Dengan lisensi resmi PJK3 dari Kemnaker RI dan akreditasi BNSP, kami telah melatih lebih dari 15.000 profesional dari berbagai sektor industri termasuk konstruksi, minyak & gas, manufaktur, dan energi.</p>
                         <div className="grid grid-cols-3 gap-4">
                             {[{ num: '2015', label: 'Tahun Berdiri' }, { num: '30+', label: 'Instruktur' }, { num: '4', label: 'Cabang' }].map(s => (
-                                <div key={s.label} className="text-center p-4 bg-surface-gray rounded-xl border border-outline-variant">
+                                <div key={s.label} className="text-center p-4 bg-surface-gray rounded-xl border border-outline-variant stat-counter">
                                     <p className="font-heading text-2xl font-bold text-deep-navy">{s.num}</p>
                                     <p className="text-xs text-text-secondary mt-1">{s.label}</p>
                                 </div>
@@ -57,7 +73,8 @@ export default function TentangKami() {
 
                 {/* Legalitas */}
                 <section className="py-16 border-t border-outline-variant">
-                    <h2 className="font-heading text-2xl font-bold text-deep-navy mb-8 text-center">Legalitas & Akreditasi</h2>
+                    <h2 className="font-heading text-2xl font-bold text-deep-navy mb-3 text-center">Legalitas & Akreditasi</h2>
+                    <div className="section-divider" />
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                         {[
                             { icon: 'verified', title: 'PJK3 Kemnaker RI', desc: 'Perusahaan Jasa K3 Resmi' },
@@ -65,8 +82,8 @@ export default function TentangKami() {
                             { icon: 'fact_check', title: 'ISO 9001:2015', desc: 'Sistem Manajemen Mutu' },
                             { icon: 'shield', title: 'ISO 45001', desc: 'Manajemen K3' },
                         ].map(item => (
-                            <div key={item.title} className="text-center p-6 bg-white rounded-xl border border-outline-variant hover:shadow-md transition-shadow">
-                                <span className="material-symbols-outlined icon-fill text-safety-orange text-4xl mb-3 block">{item.icon}</span>
+                            <div key={item.title} className="text-center p-6 bg-white rounded-xl border border-outline-variant badge-trust group">
+                                <span className="material-symbols-outlined icon-fill text-safety-orange text-4xl mb-3 block group-hover:scale-110 transition-transform">{item.icon}</span>
                                 <h4 className="font-heading font-semibold text-deep-navy mb-1">{item.title}</h4>
                                 <p className="text-xs text-text-secondary">{item.desc}</p>
                             </div>
@@ -76,10 +93,11 @@ export default function TentangKami() {
 
                 {/* Tim Instruktur */}
                 <section className="py-16 border-t border-outline-variant">
-                    <h2 className="font-heading text-2xl font-bold text-deep-navy mb-8 text-center">Tim Instruktur</h2>
+                    <h2 className="font-heading text-2xl font-bold text-deep-navy mb-3 text-center">Tim Instruktur</h2>
+                    <div className="section-divider" />
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                         {teamMembers.map(m => (
-                            <div key={m.id} className="bg-white rounded-xl border border-outline-variant p-6 text-center hover:shadow-md transition-shadow">
+                            <div key={m.id} className="bg-white rounded-xl border border-outline-variant p-6 text-center card-hover group">
                                 <div className="w-20 h-20 rounded-full bg-deep-navy flex items-center justify-center text-white font-heading font-bold text-xl mx-auto mb-4">
                                     {m.name.split(' ').slice(-2).map(n => n[0]).join('')}
                                 </div>
@@ -88,7 +106,7 @@ export default function TentangKami() {
                                 <p className="text-xs text-text-secondary mb-3">Pengalaman: {m.experience}</p>
                                 <div className="flex flex-wrap gap-1 justify-center">
                                     {m.certifications.map(c => (
-                                        <span key={c} className="text-[10px] font-bold bg-surface-gray px-2 py-0.5 rounded border border-outline-variant text-text-secondary">{c}</span>
+                                        <span key={c} className="text-[10px] font-bold bg-surface-gray px-2 py-0.5 rounded border border-outline-variant text-text-secondary badge-trust">{c}</span>
                                     ))}
                                 </div>
                             </div>

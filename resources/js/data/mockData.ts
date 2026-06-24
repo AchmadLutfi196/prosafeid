@@ -296,7 +296,7 @@ export const branches = [
         phone: '+62 31 5678 1234',
         email: 'surabaya@prosafe.co.id',
         hours: 'Senin - Jumat, 08:00 - 17:00 WIB',
-        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.6!2d112.74!3d-7.29!2m3!1f0!2f0!3f0!3m2!1i1024!2i768',
+        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3957.77113824888!2d112.738165!3d-7.278216!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd240212f0e0db1%3A0x4a478be32fb1cf2f!2sJl.%20Raya%20Darmo%2C%20Surabaya%2C%20Jawa%20Timur!5e0!3m2!1sid!2sid!4v1719130000000!5m2!1sid!2sid',
         programs: ['AK3 Umum', 'K3 Kebakaran', 'K3 Listrik', 'Auditor SMK3'],
     },
     {
@@ -307,6 +307,7 @@ export const branches = [
         phone: '+62 21 5551 2345',
         email: 'jakarta@prosafe.co.id',
         hours: 'Senin - Jumat, 08:00 - 17:00 WIB',
+        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.29424458315!2d106.819615!3d-6.224855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3fa55555555%3A0x6b772c3d5e2197f2!2sJl.%20Jend.%20Sudirman%2C%20Jakarta!5e0!3m2!1sid!2sid!4v1719130000000!5m2!1sid!2sid',
         programs: ['AK3 Umum', 'K3 Konstruksi', 'K3 Kebakaran', 'CSMS'],
     },
     {
@@ -317,6 +318,7 @@ export const branches = [
         phone: '+62 24 8312 4567',
         email: 'semarang@prosafe.co.id',
         hours: 'Senin - Jumat, 08:00 - 17:00 WIB',
+        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.226053913401!2d110.413247!3d-6.982635!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708b4eb99f7dcf%3A0xc3457a80b06bca9f!2sJl.%20Pemuda%2C%20Semarang%2C%20Jawa%20Tengah!5e0!3m2!1sid!2sid!4v1719130000000!5m2!1sid!2sid',
         programs: ['AK3 Umum', 'P3K', 'K3 Kebakaran'],
     },
     {
@@ -327,6 +329,7 @@ export const branches = [
         phone: '+62 542 7654 321',
         email: 'balikpapan@prosafe.co.id',
         hours: 'Senin - Jumat, 08:00 - 17:00 WITA',
+        mapEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.818818818818!2d116.850000!3d-1.250000!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2df14725aaaaaaaa%3A0x3328e1d2c12b1234!2sJl.%20MT%20Haryono%2C%20Balikpapan!5e0!3m2!1sid!2sid!4v1719130000000!5m2!1sid!2sid',
         programs: ['K3 Migas', 'BOSIET', 'Fire Fighting', 'Sea Survival'],
     },
 ];
@@ -360,4 +363,63 @@ export const teamMembers = [
         certifications: ['Dokter Hiperkes', 'ACLS', 'ATLS'],
         experience: '12+ tahun',
     },
+];
+
+export const careerListings = [
+    {
+        id: 1,
+        title: 'Instruktur K3 Umum',
+        location: 'Surabaya',
+        type: 'Full-time',
+        department: 'Training Division',
+        postedDate: '10 Juni 2026',
+        description: 'Bertanggung jawab atas pelaksanaan pelatihan K3 Umum sesuai standar Kemnaker RI. Memastikan kualitas materi dan metode pengajaran terbaik.',
+        requirements: ['Sertifikat AK3 Umum Kemnaker', 'Pengalaman minimal 5 tahun di bidang K3', 'Kemampuan komunikasi dan presentasi yang baik', 'Bersedia ditempatkan di seluruh cabang'],
+    },
+    {
+        id: 2,
+        title: 'Marketing Executive',
+        location: 'Jakarta',
+        type: 'Full-time',
+        department: 'Sales & Marketing',
+        postedDate: '12 Juni 2026',
+        description: 'Mengembangkan strategi pemasaran dan menjalin hubungan dengan klien korporat untuk layanan pelatihan K3 dan sertifikasi.',
+        requirements: ['S1 Marketing / Komunikasi', 'Pengalaman 2+ tahun di bidang B2B marketing', 'Jaringan luas di industri manufaktur/konstruksi', 'Target oriented'],
+    },
+    {
+        id: 3,
+        title: 'Admin & Customer Service',
+        location: 'Surabaya',
+        type: 'Full-time',
+        department: 'Operations',
+        postedDate: '15 Juni 2026',
+        description: 'Menangani administrasi pendaftaran peserta, koordinasi jadwal pelatihan, dan memberikan layanan informasi kepada calon peserta.',
+        requirements: ['D3/S1 Administrasi / Manajemen', 'Menguasai MS Office', 'Komunikatif dan teliti', 'Pengalaman di bidang training/event menjadi nilai plus'],
+    },
+    {
+        id: 4,
+        title: 'Content Writer (K3 & Safety)',
+        location: 'Remote / Surabaya',
+        type: 'Part-time / Freelance',
+        department: 'Digital Marketing',
+        postedDate: '18 Juni 2026',
+        description: 'Menulis artikel SEO-friendly seputar regulasi K3, tips keselamatan kerja, dan update industri untuk website dan media sosial ProSafe.',
+        requirements: ['Mampu menulis artikel SEO 1000+ kata', 'Pemahaman dasar tentang K3 / safety', 'Portfolio tulisan di bidang teknis/industri', 'Konsisten dan memenuhi deadline'],
+    },
+];
+
+export const instagramPosts = [
+    { id: 1, image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAt_LezpZvBlUQJnh_aglc-ALGkFFTe4Jox0pmmkokNKUYcBh4vCIE1QM2PG5lgRFaiChPir2uKHt_lQbVvLIHjD0fMMnGubQ-HIdCsrkaGYDu3HDDhpA_XYchJEDSu0mGBGup_fKp62cUW0enYHofRhSK6xdT3QSGe9EKrAlPsQiJ_bwg39R9Tdqst4K6jEVGDCFOLmJoaOMGtTp_-_wRV9ORGE2qJTbWRtEwKQWgL-AIIlbgWEr6iziCH4Avi6d9OMuN6A5V-RUkE', alt: 'Pelatihan AK3 Umum Batch Juli 2026', likes: 124 },
+    { id: 2, image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAqyKcQY9gpntiRfAOpKbsV-wa2c67lnRTK6Ej7Rg2MKZqO1HJFU4F5LFpULQ5rcWj4XjDY-JqTjMKKbjShoDr3bP-XN2Omi92EQfxJrhL1Zb5zBU1wCml69VtsinDLo1_NM9PvWjv9KQc3Kam-GkQ_r5LrgAf0JvAiYExrOWLHXHHKGvHQ3jGSMbOO29MaXPqqh0jCV9MxAY96v38wN7zbfIKAW-b9VfW3R_wctwp51-tOOWRbE_U3XmfdqhSULkVa2l4fs7uALP49', alt: 'Sertifikasi BNSP K3 Konstruksi', likes: 89 },
+    { id: 3, image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCMMy4zd_h2un2qwm9jz4YTJTASi7mJGlgTkD8Sw2Yp2y9dQnDNdRUX9C_SO1shj136hG8wMybMlmfmAtNslHa75LRLfHn4BLsbfCyAC3d7FupTw_JMyC1GmAAglkJmuQyxjm0FV84MGNvmCOxNO_3KcIW0C80DVyn2D8vW1H1gAR_TzcCoS-4aekpjRtzUwdQdasmCFAbX-7ISaOr-ZMctWArVI4TK7xh2l43v0t7LlHl0NqGbJsbdX8RMEw4AQzLuIh13WXi3P4ll', alt: 'Fire Fighting Training Balikpapan', likes: 156 },
+    { id: 4, image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAt_LezpZvBlUQJnh_aglc-ALGkFFTe4Jox0pmmkokNKUYcBh4vCIE1QM2PG5lgRFaiChPir2uKHt_lQbVvLIHjD0fMMnGubQ-HIdCsrkaGYDu3HDDhpA_XYchJEDSu0mGBGup_fKp62cUW0enYHofRhSK6xdT3QSGe9EKrAlPsQiJ_bwg39R9Tdqst4K6jEVGDCFOLmJoaOMGtTp_-_wRV9ORGE2qJTbWRtEwKQWgL-AIIlbgWEr6iziCH4Avi6d9OMuN6A5V-RUkE', alt: 'In-House Training PT Pertamina', likes: 203 },
+    { id: 5, image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAqyKcQY9gpntiRfAOpKbsV-wa2c67lnRTK6Ej7Rg2MKZqO1HJFU4F5LFpULQ5rcWj4XjDY-JqTjMKKbjShoDr3bP-XN2Omi92EQfxJrhL1Zb5zBU1wCml69VtsinDLo1_NM9PvWjv9KQc3Kam-GkQ_r5LrgAf0JvAiYExrOWLHXHHKGvHQ3jGSMbOO29MaXPqqh0jCV9MxAY96v38wN7zbfIKAW-b9VfW3R_wctwp51-tOOWRbE_U3XmfdqhSULkVa2l4fs7uALP49', alt: 'Wisuda Sertifikasi AK3 Umum', likes: 178 },
+    { id: 6, image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCMMy4zd_h2un2qwm9jz4YTJTASi7mJGlgTkD8Sw2Yp2y9dQnDNdRUX9C_SO1shj136hG8wMybMlmfmAtNslHa75LRLfHn4BLsbfCyAC3d7FupTw_JMyC1GmAAglkJmuQyxjm0FV84MGNvmCOxNO_3KcIW0C80DVyn2D8vW1H1gAR_TzcCoS-4aekpjRtzUwdQdasmCFAbX-7ISaOr-ZMctWArVI4TK7xh2l43v0t7LlHl0NqGbJsbdX8RMEw4AQzLuIh13WXi3P4ll', alt: 'Kunjungan Industri & Praktik Lapangan', likes: 95 },
+];
+
+export const legalitasBadges = [
+    { icon: 'verified', title: 'PJK3 Kemnaker RI', desc: 'Terdaftar sebagai Perusahaan Jasa K3 resmi Kementerian Ketenagakerjaan' },
+    { icon: 'workspace_premium', title: 'LSP BNSP', desc: 'Lembaga Sertifikasi Profesi terakreditasi BNSP' },
+    { icon: 'shield_person', title: 'ISO 9001:2015', desc: 'Sistem Manajemen Mutu terstandar internasional' },
+    { icon: 'military_tech', title: 'ISO 45001:2018', desc: 'Sistem Manajemen K3 standar internasional' },
 ];

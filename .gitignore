@@ -27,3 +27,8 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
+
+# Agent and tool specific files
+/.agent
+/.impeccable
+/.github/skills

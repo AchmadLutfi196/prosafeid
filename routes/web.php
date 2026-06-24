@@ -15,6 +15,10 @@ Route::inertia('/galeri', 'public/galeri')->name('galeri');
 Route::inertia('/testimoni', 'public/testimoni')->name('testimoni');
 Route::inertia('/cabang', 'public/cabang')->name('cabang');
 Route::inertia('/cek-sertifikat', 'public/cek-sertifikat')->name('cek-sertifikat');
+Route::inertia('/karir', 'public/karir')->name('karir');
+Route::inertia('/kebijakan-privasi', 'public/kebijakan-privasi')->name('kebijakan-privasi');
+Route::inertia('/syarat-ketentuan', 'public/syarat-ketentuan')->name('syarat-ketentuan');
+Route::inertia('/pendaftaran', 'public/pendaftaran')->name('pendaftaran');
 
 // Kategori Pelatihan
 Route::get('/pelatihan/{category}', function ($category) {
@@ -25,6 +29,11 @@ Route::get('/pelatihan/{category}', function ($category) {
 Route::get('/program/{slug}', function ($slug) {
     return inertia('public/detail-program', ['slug' => $slug]);
 })->name('detail-program');
+
+// Detail Cabang per Kota
+Route::get('/cabang/{city}', function ($city) {
+    return inertia('public/detail-cabang', ['city' => $city]);
+})->name('detail-cabang');
 
 // =============================================
 // ADMIN / DASHBOARD ROUTES

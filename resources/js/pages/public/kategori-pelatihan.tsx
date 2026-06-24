@@ -13,7 +13,9 @@ export default function KategoriPelatihan({ category = 'kemnaker' }: { category?
 
     return (
         <>
-            <Head title={info.title} />
+            <Head title={`${info.title} │ ProSafe Indonesia`}>
+                <meta name="description" content={`${info.desc} Daftar program pelatihan K3 di ProSafe Indonesia.`} />
+            </Head>
             {/* Breadcrumb */}
             <div className="max-w-[1280px] mx-auto px-6 py-4">
                 <div className="flex items-center gap-2 text-sm text-text-secondary">
@@ -34,7 +36,7 @@ export default function KategoriPelatihan({ category = 'kemnaker' }: { category?
             <section className="max-w-[1280px] mx-auto px-6 py-16">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {programs.map(p => (
-                        <Link key={p.id} href={`/program/${p.slug}`} className="group bg-white rounded-xl border border-outline-variant hover:border-deep-navy hover:shadow-lg transition-all overflow-hidden relative">
+                        <Link key={p.id} href={`/program/${p.slug}`} className="group bg-white rounded-xl border border-outline-variant card-hover overflow-hidden relative">
                             <div className="absolute top-0 left-0 w-full h-1 bg-safety-orange origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
                             <div className="p-6">
                                 <div className="flex items-center gap-3 mb-4">
