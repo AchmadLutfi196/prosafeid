@@ -1,10 +1,24 @@
 import { Link, usePage } from '@inertiajs/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function Navbar() {
     const { url } = usePage();
     const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
     const [megaMenuOpen, setMegaMenuOpen] = useState(false);
+    const [mobilePelatihanOpen, setMobilePelatihanOpen] = useState(false);
+    const [bottomPelatihanMenuOpen, setBottomPelatihanMenuOpen] = useState(false);
+
+    // Lock body scroll when mobile menu or bottom sheet is open
+    useEffect(() => {
+        if (mobileMenuOpen || bottomPelatihanMenuOpen) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = '';
+        }
+        return () => {
+            document.body.style.overflow = '';
+        };
+    }, [mobileMenuOpen, bottomPelatihanMenuOpen]);
 
     // Helper to check if a route is active
     const isActive = (href: string) => {
@@ -16,7 +30,7 @@ export default function Navbar() {
     return (
         <>
             {/* Top Bar */}
-            <div className="w-full z-50 bg-gradient-to-r from-[#001731] via-deep-navy to-[#002f5d] text-white/95 text-[11px] sm:text-xs lg:text-[13px] border-b border-safety-orange/30">
+            <div className={`w-full z-50 bg-gradient-to-r from-[#001731] via-deep-navy to-[#002f5d] text-white/95 text-[11px] sm:text-xs lg:text-[13px] border-b border-safety-orange/30 ${mobileMenuOpen ? 'hidden' : ''}`}>
                 <div className="max-w-[1280px] mx-auto px-4 sm:px-6 py-2 lg:py-2.5 flex justify-between items-center">
                     <div className="flex items-center gap-4 lg:gap-5">
                         <a href="tel:+6281222998847" className="flex items-center gap-1.5 hover:text-safety-orange transition-colors">
@@ -44,7 +58,7 @@ export default function Navbar() {
             </div>
 
             {/* Main Header */}
-            <header className="sticky top-0 w-full z-50 bg-white/95 backdrop-blur-md border-b border-outline-variant/60 shadow-sm">
+            <header className={`${mobileMenuOpen ? 'fixed top-0 animate-fade-in' : 'sticky top-0'} w-full z-50 bg-white/95 backdrop-blur-md border-b border-outline-variant/60 shadow-sm`}>
                 <div className="max-w-[1280px] mx-auto flex items-center justify-between px-6 h-16">
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2.5 shrink-0">
@@ -156,9 +170,41 @@ export default function Navbar() {
             {mobileMenuOpen && (
                 <div className="fixed inset-0 z-40 bg-white pt-16 overflow-y-auto lg:hidden">
                     <nav className="flex flex-col p-5 gap-0.5">
+                        {/* Beranda Link */}
+                        <Link href="/" onClick={() => setMobileMenuOpen(false)} className={`font-heading font-semibold text-base py-3 px-4 rounded-lg transition-colors flex items-center gap-3 ${isActive('/') ? 'text-safety-orange bg-surface-gray' : 'text-on-surface-variant hover:bg-surface-gray'}`}>
+                            <span className="material-symbols-outlined" style={{ fontSize: '20px' }}>home</span>
+                            Beranda
+                        </Link>
+
+                        {/* Pelatihan K3 Accordion */}
+                        <div>
+                            <button onClick={() => setMobilePelatihanOpen(!mobilePelatihanOpen)} className={`font-heading font-semibold text-base py-3 px-4 rounded-lg transition-colors flex items-center justify-between w-full ${url.startsWith('/pelatihan') ? 'text-safety-orange bg-surface-gray/50' : 'text-on-surface-variant hover:bg-surface-gray'}`}>
+                                <span className="flex items-center gap-3">
+                                    <span className="material-symbols-outlined text-deep-navy" style={{ fontSize: '20px' }}>engineering</span>
+                                    Pelatihan K3
+                                </span>
+                                <span className={`material-symbols-outlined transition-transform duration-200 ${mobilePelatihanOpen ? 'rotate-180' : ''}`} style={{ fontSize: '20px' }}>expand_more</span>
+                            </button>
+                            
+                            {mobilePelatihanOpen && (
+                                <div className="pl-6 pr-2 py-1.5 flex flex-col gap-1 border-l border-outline-variant/60 ml-8 my-1 bg-surface-gray/30 rounded-r-lg">
+                                    {[
+                                        { href: '/pelatihan/kemnaker', label: 'Pelatihan Kemnaker RI', icon: 'shield_person' },
+                                        { href: '/pelatihan/bnsp', label: 'Sertifikasi BNSP', icon: 'workspace_premium' },
+                                        { href: '/pelatihan/migas', label: 'K3 Migas & Offshore', icon: 'local_fire_department' },
+                                        { href: '/pelatihan/non-sertifikasi', label: 'Non-Sertifikasi', icon: 'menu_book' },
+                                    ].map(sub => (
+                                        <Link key={sub.href} href={sub.href} onClick={() => setMobileMenuOpen(false)} className={`font-heading font-semibold text-sm py-2 px-3 rounded-md transition-colors flex items-center gap-2.5 ${url === sub.href ? 'text-safety-orange bg-white shadow-sm' : 'text-on-surface-variant hover:bg-surface-gray/40'}`}>
+                                            <span className="material-symbols-outlined text-deep-navy/80 text-[18px]">{sub.icon}</span>
+                                            {sub.label}
+                                        </Link>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+                        {/* Other Links */}
                         {[
-                            { href: '/', label: 'Beranda', icon: 'home' },
-                            { href: '/pelatihan/kemnaker', label: 'Pelatihan K3', icon: 'engineering' },
                             { href: '/jadwal', label: 'Jadwal Training', icon: 'calendar_month' },
                             { href: '/corporate', label: 'Corporate', icon: 'business' },
                             { href: '/tentang-kami', label: 'Tentang Kami', icon: 'info' },
@@ -185,18 +231,83 @@ export default function Navbar() {
                 </div>
             )}
 
+            {/* Mobile Bottom Sheet Menu for Pelatihan */}
+            {bottomPelatihanMenuOpen && (
+                <>
+                    {/* Backdrop */}
+                    <div 
+                        className="fixed inset-0 z-40 bg-black/40 backdrop-blur-xs transition-opacity duration-300 lg:hidden" 
+                        onClick={() => setBottomPelatihanMenuOpen(false)}
+                    />
+                    
+                    {/* Bottom Sheet Card */}
+                    <div className="fixed bottom-[calc(56px+env(safe-area-inset-bottom,0px)+8px)] left-4 right-4 z-50 bg-white rounded-2xl border border-outline-variant/80 shadow-2xl p-4 lg:hidden animate-in fade-in slide-in-from-bottom-5 duration-200">
+                        <div className="flex items-center justify-between mb-3 pb-2 border-b border-outline-variant/60">
+                            <span className="font-heading font-black text-sm text-deep-navy uppercase tracking-wider">Kategori Pelatihan</span>
+                            <button 
+                                onClick={() => setBottomPelatihanMenuOpen(false)} 
+                                className="w-7 h-7 rounded-full bg-surface-gray flex items-center justify-center text-text-secondary hover:text-deep-navy transition-colors"
+                            >
+                                <span className="material-symbols-outlined text-base">close</span>
+                            </button>
+                        </div>
+                        <div className="grid grid-cols-1 gap-1.5">
+                            {[
+                                { href: '/pelatihan/kemnaker', label: 'Pelatihan Kemnaker RI', icon: 'shield_person', desc: 'Sertifikasi resmi Kemenaker RI' },
+                                { href: '/pelatihan/bnsp', label: 'Sertifikasi BNSP', icon: 'workspace_premium', desc: 'Lisensi BNSP Nasional' },
+                                { href: '/pelatihan/migas', label: 'K3 Migas & Offshore', icon: 'local_fire_department', desc: 'Spesialis Migas & Offshore' },
+                                { href: '/pelatihan/non-sertifikasi', label: 'Non-Sertifikasi', icon: 'menu_book', desc: 'Pelatihan teknis & awareness' },
+                            ].map(sub => {
+                                const isSubActive = url === sub.href;
+                                return (
+                                    <Link 
+                                        key={sub.href} 
+                                        href={sub.href} 
+                                        onClick={() => setBottomPelatihanMenuOpen(false)} 
+                                        className={`flex items-center gap-3 p-2.5 rounded-xl transition-all ${isSubActive ? 'bg-safety-orange/5 border border-safety-orange/20 text-safety-orange' : 'bg-surface-gray/50 hover:bg-surface-gray text-on-surface-variant border border-transparent'}`}
+                                    >
+                                        <div className={`w-8 h-8 rounded-lg flex items-center justify-center shrink-0 ${isSubActive ? 'bg-safety-orange/15 text-safety-orange' : 'bg-white shadow-sm border border-outline-variant/40 text-deep-navy'}`}>
+                                            <span className="material-symbols-outlined text-[18px]">{sub.icon}</span>
+                                        </div>
+                                        <div className="leading-tight text-left">
+                                            <p className={`text-xs font-bold ${isSubActive ? 'text-safety-orange' : 'text-deep-navy'}`}>{sub.label}</p>
+                                            <p className="text-[10px] text-text-secondary mt-0.5">{sub.desc}</p>
+                                        </div>
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    </div>
+                </>
+            )}
+
             {/* Mobile Bottom Navigation */}
-            <nav className="lg:hidden fixed bottom-0 w-full z-40 bg-white border-t border-outline-variant/60 pb-safe flex justify-around items-center py-1.5 shadow-[0_-2px_10px_rgba(0,0,0,0.06)]">
+            <nav className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-outline-variant/60 flex justify-around items-stretch pt-[11px] pb-[calc(11px+env(safe-area-inset-bottom,0px))] shadow-[0_-2px_10px_rgba(0,0,0,0.06)]">
                 {[
                     { href: '/', icon: 'home', label: 'Home' },
-                    { href: '/pelatihan/kemnaker', icon: 'engineering', label: 'Pelatihan' },
+                    { href: '/pelatihan', icon: 'engineering', label: 'Pelatihan' },
                     { href: '/jadwal', icon: 'calendar_month', label: 'Jadwal' },
                     { href: '/corporate', icon: 'business', label: 'Corporate' },
                     { href: '/kontak', icon: 'support_agent', label: 'Kontak' },
                 ].map(item => {
                     const active = isActive(item.href);
+                    
+                    if (item.label === 'Pelatihan') {
+                        const isAnyPelatihanActive = url.startsWith('/pelatihan');
+                        return (
+                            <button 
+                                key={item.label} 
+                                onClick={() => setBottomPelatihanMenuOpen(!bottomPelatihanMenuOpen)} 
+                                className={`flex flex-col items-center justify-center w-full h-full focus:outline-none ${isAnyPelatihanActive || bottomPelatihanMenuOpen ? 'text-safety-orange' : 'text-text-secondary'}`}
+                            >
+                                <span className={`material-symbols-outlined ${isAnyPelatihanActive || bottomPelatihanMenuOpen ? 'icon-fill' : ''}`} style={{ fontSize: '22px' }}>{item.icon}</span>
+                                <span className="text-[10px] font-semibold mt-0.5">{item.label}</span>
+                            </button>
+                        );
+                    }
+                    
                     return (
-                        <Link key={item.href} href={item.href} className={`flex flex-col items-center ${active ? 'text-safety-orange' : 'text-text-secondary'}`}>
+                        <Link key={item.href} href={item.href} className={`flex flex-col items-center justify-center w-full h-full ${active ? 'text-safety-orange' : 'text-text-secondary'}`}>
                             <span className={`material-symbols-outlined ${active ? 'icon-fill' : ''}`} style={{ fontSize: '22px' }}>{item.icon}</span>
                             <span className="text-[10px] font-semibold mt-0.5">{item.label}</span>
                         </Link>

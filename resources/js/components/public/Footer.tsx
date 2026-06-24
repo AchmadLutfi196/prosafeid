@@ -120,7 +120,7 @@ export default function Footer() {
             </div>
 
             {/* Copyright */}
-            <div className="border-t border-outline-variant bg-surface-container">
+            <div className="border-t border-outline-variant bg-surface-container pb-[calc(56px+env(safe-area-inset-bottom,0px))] md:pb-0">
                 <div className="max-w-[1280px] mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-text-secondary">
                     <p>© 2026 ProSafe Indonesia. All rights reserved.</p>
                     <div className="flex gap-4">

@@ -1,10 +1,12 @@
 import { Head } from '@inertiajs/react';
 import { branches } from '@/data/mockData';
 import { useState } from 'react';
+import CustomSelect from '@/components/public/CustomSelect';
 
 export default function Kontak() {
     const [formSubmitted, setFormSubmitted] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [selectedSubject, setSelectedSubject] = useState('Informasi Pelatihan');
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -46,36 +48,59 @@ export default function Kontak() {
                                 <div className="grid md:grid-cols-2 gap-4">
                                     <div>
                                         <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5 block">Nama Lengkap</label>
-                                        <input required type="text" name="name" autoComplete="name" className="input-prosafe text-sm w-full" placeholder="Nama Anda" />
+                                        <div className="input-prosafe-icon-wrapper">
+                                            <span className="material-symbols-outlined">person</span>
+                                            <input required type="text" name="name" autoComplete="name" className="input-prosafe text-sm w-full" placeholder="Nama Anda" />
+                                        </div>
                                     </div>
                                     <div>
                                         <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5 block">Perusahaan</label>
-                                        <input required type="text" name="company" autoComplete="organization" className="input-prosafe text-sm w-full" placeholder="Nama Perusahaan" />
+                                        <div className="input-prosafe-icon-wrapper">
+                                            <span className="material-symbols-outlined">business</span>
+                                            <input required type="text" name="company" autoComplete="organization" className="input-prosafe text-sm w-full" placeholder="Nama Perusahaan" />
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="grid md:grid-cols-2 gap-4">
                                     <div>
                                         <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5 block">Email</label>
-                                        <input required type="email" name="email" autoComplete="email" spellCheck="false" className="input-prosafe text-sm w-full" placeholder="email@perusahaan.com" />
+                                        <div className="input-prosafe-icon-wrapper">
+                                            <span className="material-symbols-outlined">mail</span>
+                                            <input required type="email" name="email" autoComplete="email" spellCheck="false" className="input-prosafe text-sm w-full" placeholder="email@perusahaan.com" />
+                                        </div>
                                     </div>
                                     <div>
                                         <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5 block">No. WhatsApp</label>
-                                        <input required type="tel" name="phone" autoComplete="tel" className="input-prosafe text-sm w-full" placeholder="0812xxxxxxxx" />
+                                        <div className="input-prosafe-icon-wrapper">
+                                            <span className="material-symbols-outlined">chat</span>
+                                            <input required type="tel" name="phone" autoComplete="tel" className="input-prosafe text-sm w-full" placeholder="0812xxxxxxxx" />
+                                        </div>
                                     </div>
                                 </div>
                                 <div>
                                     <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5 block">Subjek</label>
-                                    <select required name="subject" className="input-prosafe text-sm w-full bg-white">
-                                        <option value="Informasi Pelatihan">Informasi Pelatihan</option>
-                                        <option value="Inhouse Training">Inhouse Training</option>
-                                        <option value="Konsultasi K3">Konsultasi K3</option>
-                                        <option value="Kerjasama">Kerjasama</option>
-                                        <option value="Lainnya">Lainnya</option>
-                                    </select>
+                                    <CustomSelect
+                                        value={selectedSubject}
+                                        onChange={setSelectedSubject}
+                                        placeholder="Pilih Subjek Pesan"
+                                        icon="school"
+                                        required
+                                        name="subject"
+                                        options={[
+                                            { value: 'Informasi Pelatihan', label: 'Informasi Pelatihan', sublabel: 'Pertanyaan seputar pendaftaran & jadwal public class' },
+                                            { value: 'Inhouse Training', label: 'Inhouse Training', sublabel: 'Permintaan pelatihan khusus di lokasi perusahaan Anda' },
+                                            { value: 'Konsultasi K3', label: 'Konsultasi K3', sublabel: 'Pendampingan audit, sertifikasi, & manajemen K3' },
+                                            { value: 'Kerjasama', label: 'Kerjasama', sublabel: 'Kolaborasi program, vendor, & kemitraan strategis' },
+                                            { value: 'Lainnya', label: 'Lainnya', sublabel: 'Hal-hal lainnya yang ingin ditanyakan' }
+                                        ]}
+                                    />
                                 </div>
                                 <div>
                                     <label className="text-xs font-bold text-on-surface-variant uppercase tracking-wider mb-1.5 block">Pesan</label>
-                                    <textarea required name="message" rows={5} className="input-prosafe text-sm w-full resize-none" placeholder="Jelaskan kebutuhan Anda..." />
+                                    <div className="input-prosafe-icon-wrapper">
+                                        <span className="material-symbols-outlined textarea-icon">edit_note</span>
+                                        <textarea required name="message" rows={5} className="input-prosafe text-sm w-full resize-none" placeholder="Jelaskan kebutuhan Anda..." />
+                                    </div>
                                 </div>
                                 <button type="submit" disabled={isSubmitting} className="btn-prosafe-primary w-full justify-center py-4 text-base disabled:opacity-75 disabled:cursor-not-allowed">
                                     {isSubmitting ? (

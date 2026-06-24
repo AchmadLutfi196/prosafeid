@@ -2,11 +2,13 @@ import { Link, Head } from '@inertiajs/react';
 import { useEffect, useRef, useState } from 'react';
 import { clientLogos, testimonials, blogPosts, instagramPosts, legalitasBadges } from '@/data/mockData';
 import BrandLogo from '@/components/public/BrandLogos';
+import CustomSelect from '@/components/public/CustomSelect';
 
 export default function Home() {
     const statsRef = useRef<HTMLDivElement>(null);
     const [faqOpen, setFaqOpen] = useState<number | null>(null);
     const [formSubmitted, setFormSubmitted] = useState(false);
+    const [selectedProgram, setSelectedProgram] = useState('');
 
     const toggleFaq = (index: number) => {
         setFaqOpen(faqOpen === index ? null : index);
@@ -566,38 +568,60 @@ export default function Home() {
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label htmlFor="nama_lengkap" className="block text-xs font-bold text-deep-navy uppercase tracking-wider mb-2">Nama Lengkap</label>
-                                    <input required type="text" id="nama_lengkap" name="nama" className="input-prosafe w-full text-sm" placeholder="Contoh: Achmad Lutfi" />
+                                    <div className="input-prosafe-icon-wrapper">
+                                        <span className="material-symbols-outlined">person</span>
+                                        <input required type="text" id="nama_lengkap" name="nama" className="input-prosafe text-sm" placeholder="Contoh: Achmad Lutfi" />
+                                    </div>
                                 </div>
                                 <div>
                                     <label htmlFor="whatsapp_number" className="block text-xs font-bold text-deep-navy uppercase tracking-wider mb-2">No. WhatsApp</label>
-                                    <input required type="tel" id="whatsapp_number" name="whatsapp" className="input-prosafe w-full text-sm" placeholder="Contoh: 081222998847" />
+                                    <div className="input-prosafe-icon-wrapper">
+                                        <span className="material-symbols-outlined">chat</span>
+                                        <input required type="tel" id="whatsapp_number" name="whatsapp" className="input-prosafe text-sm" placeholder="Contoh: 081222998847" />
+                                    </div>
                                 </div>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label htmlFor="email_company" className="block text-xs font-bold text-deep-navy uppercase tracking-wider mb-2">Email Perusahaan</label>
-                                    <input required type="email" id="email_company" name="email" className="input-prosafe w-full text-sm" placeholder="Contoh: hrd@company.com" />
+                                    <div className="input-prosafe-icon-wrapper">
+                                        <span className="material-symbols-outlined">mail</span>
+                                        <input required type="email" id="email_company" name="email" className="input-prosafe text-sm" placeholder="Contoh: hrd@company.com" />
+                                    </div>
                                 </div>
                                 <div>
                                     <label htmlFor="nama_perusahaan" className="block text-xs font-bold text-deep-navy uppercase tracking-wider mb-2">Nama Perusahaan</label>
-                                    <input required type="text" id="nama_perusahaan" name="company" className="input-prosafe w-full text-sm" placeholder="Contoh: PT. Maju Bersama" />
+                                    <div className="input-prosafe-icon-wrapper">
+                                        <span className="material-symbols-outlined">business</span>
+                                        <input required type="text" id="nama_perusahaan" name="company" className="input-prosafe text-sm" placeholder="Contoh: PT. Maju Bersama" />
+                                    </div>
                                 </div>
                             </div>
                             <div>
                                 <label htmlFor="program_pilihan" className="block text-xs font-bold text-deep-navy uppercase tracking-wider mb-2">Program Pelatihan</label>
-                                <select required id="program_pilihan" name="program" className="input-prosafe w-full text-sm">
-                                    <option value="">-- Pilih Program Pelatihan --</option>
-                                    <option value="bfa">Basic First Aid (BFA)</option>
-                                    <option value="bff">Basic Fire Fighting (BFF)</option>
-                                    <option value="bbs">Safety Awareness (BBS)</option>
-                                    <option value="sea_survival">Basic Sea Survival & HUET</option>
-                                    <option value="bosiet">BOSIET</option>
-                                    <option value="other">Kebutuhan Custom Lainnya</option>
-                                </select>
+                                <CustomSelect
+                                    value={selectedProgram}
+                                    onChange={setSelectedProgram}
+                                    placeholder="-- Pilih Program Pelatihan --"
+                                    icon="school"
+                                    required
+                                    name="program"
+                                    options={[
+                                        { value: 'bfa', label: 'Basic First Aid (BFA)', sublabel: 'Pelatihan P3K Resmi Kemnaker RI / Sertifikat ProSafe' },
+                                        { value: 'bff', label: 'Basic Fire Fighting (BFF)', sublabel: 'Pelatihan Penanggulangan Kebakaran Resmi Kemnaker RI' },
+                                        { value: 'bbs', label: 'Safety Awareness (BBS)', sublabel: 'Behavior Based Safety & Budaya Keselamatan Kerja' },
+                                        { value: 'sea_survival', label: 'Basic Sea Survival & HUET', sublabel: 'Sertifikasi Keselamatan Laut & Lepas Pantai K3 Migas' },
+                                        { value: 'bosiet', label: 'BOSIET', sublabel: 'Basic Offshore Safety Induction & Emergency Training' },
+                                        { value: 'other', label: 'Kebutuhan Custom Lainnya', sublabel: 'Program In-house Training & Konsultasi Spesifik Perusahaan' }
+                                    ]}
+                                />
                             </div>
                             <div>
                                 <label htmlFor="keterangan_tambahan" className="block text-xs font-bold text-deep-navy uppercase tracking-wider mb-2">Keterangan Tambahan</label>
-                                <textarea id="keterangan_tambahan" name="message" rows={4} className="input-prosafe w-full text-sm" placeholder="Contoh: Estimasi jumlah peserta 15 orang, in-house training di Surabaya." />
+                                <div className="input-prosafe-icon-wrapper">
+                                    <span className="material-symbols-outlined textarea-icon">edit_note</span>
+                                    <textarea id="keterangan_tambahan" name="message" rows={4} className="input-prosafe text-sm resize-none" placeholder="Contoh: Estimasi jumlah peserta 15 orang, in-house training di Surabaya." />
+                                </div>
                             </div>
                             <button type="submit" className="btn-prosafe-primary w-full justify-center py-4 text-base shadow-lg shadow-safety-orange/15 hover:shadow-safety-orange/30">
                                 <span className="material-symbols-outlined">send</span> Kirim Permintaan Penawaran

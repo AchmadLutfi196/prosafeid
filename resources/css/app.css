@@ -585,3 +585,56 @@ body {
     background-clip: text;
 }
 
+/* ═══════════════════════════════════════════════════
+   UI/UX Pro Max v2: Input Icon Wrapper System
+   ═══════════════════════════════════════════════════ */
+.input-prosafe-icon-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.input-prosafe-icon-wrapper > .material-symbols-outlined {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--color-text-secondary);
+    font-size: 20px;
+    pointer-events: none;
+    z-index: 10;
+    transition: color 0.2s ease;
+}
+
+.input-prosafe-icon-wrapper > .input-prosafe {
+    padding-left: 48px !important;
+}
+
+.input-prosafe-icon-wrapper > select.input-prosafe {
+    padding-right: 44px !important;
+}
+
+.input-prosafe-icon-wrapper > textarea.input-prosafe {
+    padding-top: 14px !important;
+}
+
+.input-prosafe-icon-wrapper > .material-symbols-outlined.textarea-icon {
+    top: 16px;
+    transform: none;
+}
+
+/* Active focus state color for the leading icon */
+.input-prosafe-icon-wrapper:focus-within > .material-symbols-outlined {
+    color: var(--color-safety-orange);
+}
+
+@keyframes select-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
